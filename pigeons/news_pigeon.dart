@@ -17,8 +17,8 @@ import 'package:pigeon/pigeon.dart';
   // objcSourceOut: 'macos/Runner/news_pigeon.g.m',
   //// Set this to a unique prefix for your plugin or application, per Objective-C naming conventions.
   // objcOptions: ObjcOptions(prefix: 'PGN'),
-  copyrightHeader: 'pigeons/copyright.txt',
-  dartPackageName: 'pigeon_news_package',
+  // copyrightHeader: 'pigeons/copyright.txt',
+  // dartPackageName: 'pigeon_news_package',
 ))
 
 ///
