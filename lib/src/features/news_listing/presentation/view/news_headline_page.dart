@@ -5,6 +5,7 @@ import 'package:news_app/src/core/utility/app_scaffold_body.dart';
 import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_page_state.dart';
 import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_provider.dart';
 import 'package:news_app/src/features/settings/settings_view.dart';
+import 'package:news_app/src/news_pigeon.g.dart';
 
 import '../widgets/news_item_widget.dart';
 
@@ -83,6 +84,10 @@ class NewsListingPage extends ConsumerWidget {
                   description: item.description,
                   author: '${item.source?.name}',
                   publishedAt: DateTime.parse(item.publishedAt ?? ''),
+                  onTap: () {
+                    var param = item.mapToNewsArticleModelPigeon();
+                    NewsArticleHostApi().sendNewsDetail(param);
+                  },
                 );
               },
             ),

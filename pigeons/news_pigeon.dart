@@ -23,15 +23,16 @@ import 'package:pigeon/pigeon.dart';
 
 ///
 ///
-class NewsArticleSourceModel {
+
+class NewsArticleSourceModelPigeon {
   String? id;
   String? name;
 
-  NewsArticleSourceModel({this.id, this.name});
+  NewsArticleSourceModelPigeon({this.id, this.name});
 }
 
-class NewsArticleModel {
-  NewsArticleSourceModel? source;
+class NewsArticleModelPigeon {
+  NewsArticleSourceModelPigeon? source;
   String? author;
   String? title;
   String? description;
@@ -40,7 +41,7 @@ class NewsArticleModel {
   String? publishedAt;
   String? content;
 
-  NewsArticleModel(
+  NewsArticleModelPigeon(
       {this.source,
       this.author,
       this.title,
@@ -53,5 +54,5 @@ class NewsArticleModel {
 
 @HostApi()
 abstract class NewsArticleHostApi {
-  void sendNewsDetail(NewsArticleModel newsArticleModel);
+  void sendNewsDetail(NewsArticleModelPigeon newsArticleModel);
 }

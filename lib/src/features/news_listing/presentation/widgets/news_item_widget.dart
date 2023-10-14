@@ -15,6 +15,7 @@ class NewsItemWidget extends StatelessWidget {
     this.description,
     this.author,
     this.onShare,
+    this.onTap,
     super.key,
   });
 
@@ -36,43 +37,48 @@ class NewsItemWidget extends StatelessWidget {
   /// The url of this post image.
   final String imageUrl;
 
+  final VoidCallback? onTap;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Padding(
-      padding: EdgeInsets.all(AppSpacing.lg),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: textTheme.titleLarge
-                      ?.copyWith(color: AppColors.highEmphasisSurface),
-                  maxLines: 6,
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.all(AppSpacing.lg),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: textTheme.titleLarge
+                        ?.copyWith(color: AppColors.highEmphasisSurface),
+                    maxLines: 6,
+                  ),
                 ),
-              ),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: InlineImage(imageUrl: imageUrl),
-              ),
-            ],
-          ),
-          Text(
-            description ?? '',
-            style: textTheme.bodyMedium
-                ?.copyWith(color: AppColors.mediumEmphasisSurface),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          PostFooter(
-            publishedAt: publishedAt,
-            author: author,
-            onShare: onShare,
-          ),
-        ],
+                const SizedBox(width: AppSpacing.md),
+                Expanded(
+                  child: InlineImage(imageUrl: imageUrl),
+                ),
+              ],
+            ),
+            Text(
+              description ?? '',
+              style: textTheme.bodyMedium
+                  ?.copyWith(color: AppColors.mediumEmphasisSurface),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            PostFooter(
+              publishedAt: publishedAt,
+              author: author,
+              onShare: onShare,
+            ),
+          ],
+        ),
       ),
     );
   }
