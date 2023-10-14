@@ -1,24 +1,24 @@
 import 'package:pigeon/pigeon.dart';
 
 @ConfigurePigeon(PigeonOptions(
-  dartOut: 'lib/src/messages.g.dart',
+  dartOut: 'lib/src/news_pigeon.g.dart',
   dartOptions: DartOptions(),
-  cppOptions: CppOptions(namespace: 'pigeon_example'),
-  cppHeaderOut: 'windows/runner/messages.g.h',
-  cppSourceOut: 'windows/runner/messages.g.cpp',
-  kotlinOut:
-      'android/app/src/main/kotlin/dev/flutter/pigeon_example_app/Messages.g.kt',
-  kotlinOptions: KotlinOptions(),
-  javaOut: 'android/app/src/main/java/io/flutter/plugins/Messages.java',
+  // cppOptions: CppOptions(namespace: 'pigeon_example'),
+  // cppHeaderOut: 'windows/runner/news_pigeon.g.h',
+  // cppSourceOut: 'windows/runner/news_pigeon.g.cpp',
+  // kotlinOut:
+  //     'android/app/src/main/kotlin/dev/flutter/pigeon_example_app/news_pigeon.g.kt',
+  // kotlinOptions: KotlinOptions(),
+  javaOut: 'android/app/src/main/java/io/flutter/plugins/news_pigeon.java',
   javaOptions: JavaOptions(),
-  swiftOut: 'ios/Runner/Messages.g.swift',
+  swiftOut: 'ios/Runner/news_pigeon.g.swift',
   swiftOptions: SwiftOptions(),
-  objcHeaderOut: 'macos/Runner/messages.g.h',
-  objcSourceOut: 'macos/Runner/messages.g.m',
-  // Set this to a unique prefix for your plugin or application, per Objective-C naming conventions.
-  objcOptions: ObjcOptions(prefix: 'PGN'),
+  // objcHeaderOut: 'macos/Runner/news_pigeon.g.h',
+  // objcSourceOut: 'macos/Runner/news_pigeon.g.m',
+  //// Set this to a unique prefix for your plugin or application, per Objective-C naming conventions.
+  // objcOptions: ObjcOptions(prefix: 'PGN'),
   copyrightHeader: 'pigeons/copyright.txt',
-  dartPackageName: 'pigeon_example_package',
+  dartPackageName: 'pigeon_news_package',
 ))
 
 ///
