@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// {@template post_footer}
@@ -44,6 +45,18 @@ class PostFooter extends StatelessWidget {
               if (author != null) ...[
                 TextSpan(
                   text: author,
+                  style: const TextStyle(
+                    color: Colors
+                        .blue, // Change the color to indicate it's clickable
+                    decoration:
+                        TextDecoration.underline, // Add underline for clarity
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Define the action to be taken when the TextSpan is clicked.
+                      // For example, you can navigate to another screen or open a URL.
+                      print('Author clicked: $author');
+                    },
                 ),
                 const WidgetSpan(child: SizedBox(width: AppSpacing.sm)),
                 const TextSpan(

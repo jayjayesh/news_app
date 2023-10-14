@@ -8,6 +8,8 @@ import 'package:news_app/src/features/settings/settings_view.dart';
 
 import '../widgets/news_item_widget.dart';
 
+// https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=c1a571d9e5cd4ff3b161d9c7e248bd0f
+
 class NewsListingPage extends ConsumerWidget {
   const NewsListingPage({super.key});
 
