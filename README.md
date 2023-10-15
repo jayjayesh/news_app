@@ -1,25 +1,32 @@
-# news_app
+# Implemented Feature
 
-A news_app Flutter project.
+
+-- news api integration : top headline
+
+-- pagination
+
+-- pull-to-refresh to fetch recent news posts
+
+-- filter : news source
+
+-- reset filter : tap on navigation_bar title to show all news top headline
+
+-- internet-connectivity
+
+-- pigeon : host api integration
+
+-- native news details screen : iOS (done) , android (todo)
+
 
 ## Getting Started
 
 `Used Flutter Version`
-Flutter 3.13.1 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision e1e47221e8
-Engine • revision b20183e040
+
+Flutter 3.13.1 • channel stable
+
 Tools • Dart 3.1.0 • DevTools 2.25.0
 
 
-`Implemented Feature`
--- news api integration : top headline
--- pagination
--- pull-to-refresh to fetch recent news posts
--- filter : news source
--- reset filter : tap on navigation_bar title to show all news top headline
--- internet-connectivity
--- pigeon : host api integration
--- native news details screen : iOS only
 
 ## Assets
 
