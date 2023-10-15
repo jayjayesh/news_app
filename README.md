@@ -5,9 +5,13 @@ A news_app Flutter project.
 ## Getting Started
 
 `Used Flutter Version`
+
 Flutter 3.13.1 • channel stable • https://github.com/flutter/flutter.git
+
 Framework • revision e1e47221e8
+
 Engine • revision b20183e040
+
 Tools • Dart 3.1.0 • DevTools 2.25.0
 
 
