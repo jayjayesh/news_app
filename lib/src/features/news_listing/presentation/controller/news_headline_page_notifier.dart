@@ -14,6 +14,27 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
   Future<void> pullToRefresh() async {
     state = state.copyWith(
       paginationPage: 0,
+      isPaginationEnd: false,
+      newArticles: const [],
+    );
+    fetchNewsHeadlines();
+  }
+
+  void onTapNewsSource(String source) {
+    state = state.copyWith(
+      paginationPage: 0,
+      isPaginationEnd: false,
+      source: source,
+      newArticles: const [],
+    );
+    fetchNewsHeadlines();
+  }
+
+  void onTapAllHeadline() {
+    state = state.copyWith(
+      source: '',
+      paginationPage: 0,
+      isPaginationEnd: false,
       newArticles: const [],
     );
     fetchNewsHeadlines();
@@ -30,20 +51,40 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       paginationPage: state.paginationPage + 1,
     );
 
-    var queryParameters = {
-      'country': AppConstant.newsApiCountry,
-      'page': state.paginationPage,
-      'pageSize': AppConstant.pageSize,
-      'apiKey': AppConstant.newsApiKey,
-    };
+    var queryParameters = <String, dynamic>{};
 
-    var response =
-        await newsHeadlineRepository.fetchNewsHeadline(queryParameters);
-    if (response.articles!.isNotEmpty) {}
+    if (state.source.isNotEmpty) {
+      queryParameters = {
+        'sources': state.source,
+        'page': state.paginationPage,
+        'pageSize': AppConstant.pageSize,
+        'apiKey': AppConstant.newsApiKey,
+      };
+    } else {
+      queryParameters = {
+        'country': AppConstant.newsApiCountry,
+        'page': state.paginationPage,
+        'pageSize': AppConstant.pageSize,
+        'apiKey': AppConstant.newsApiKey,
+      };
+    }
 
-    state = state.copyWith(
+    try {
+      var response =
+          await newsHeadlineRepository.fetchNewsHeadline(queryParameters);
+      if (response.articles!.isNotEmpty) {}
+
+      state = state.copyWith(
         status: NewsHeadlinePageStatus.loaded,
-        isPaginationEnd: state.newArticles.length == response.totalResults,
-        newArticles: [...state.newArticles, ...response.articles ?? []]);
+        isPaginationEnd: response.articles?.isEmpty,
+        // isPaginationEnd:
+        //     state.newArticles.length >= (response.totalResults ?? 0),
+        newArticles: [...state.newArticles, ...response.articles ?? []],
+      );
+    } catch (e) {
+      state = state.copyWith(
+        status: NewsHeadlinePageStatus.error,
+      );
+    }
   }
 }

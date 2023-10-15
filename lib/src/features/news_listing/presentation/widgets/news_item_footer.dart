@@ -1,15 +1,14 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-/// {@template post_footer}
-/// A reusable footer of a post news block widget.
-/// {@endtemplate}
 class PostFooter extends StatelessWidget {
-  /// {@macro post_footer}
+  //
   const PostFooter({
     super.key,
     this.publishedAt,
     this.author,
+    this.onTapAuthor,
     this.onShare,
     this.isContentOverlaid = false,
   });
@@ -19,6 +18,9 @@ class PostFooter extends StatelessWidget {
 
   /// The date when this post was published.
   final DateTime? publishedAt;
+
+  /// Called when the author text is tapped.
+  final VoidCallback? onTapAuthor;
 
   /// Called when the share button is tapped.
   final VoidCallback? onShare;
@@ -44,6 +46,19 @@ class PostFooter extends StatelessWidget {
               if (author != null) ...[
                 TextSpan(
                   text: author,
+                  style: const TextStyle(
+                    color: Colors
+                        .blue, // Change the color to indicate it's clickable
+                    decoration:
+                        TextDecoration.underline, // Add underline for clarity
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Define the action to be taken when the TextSpan is clicked.
+                      // For example, you can navigate to another screen or open a URL.
+                      print('Author clicked: $author');
+                      onTapAuthor?.call();
+                    },
                 ),
                 const WidgetSpan(child: SizedBox(width: AppSpacing.sm)),
                 const TextSpan(
