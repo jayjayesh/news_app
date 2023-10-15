@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
@@ -85,8 +87,10 @@ class NewsListingPage extends ConsumerWidget {
                   author: '${item.source?.name}',
                   publishedAt: DateTime.parse(item.publishedAt ?? ''),
                   onTap: () {
-                    var param = item.mapToNewsArticleModelPigeon();
-                    NewsArticleHostApi().sendNewsDetail(param);
+                    if (Platform.isIOS) {
+                      var param = item.mapToNewsArticleModelPigeon();
+                      NewsArticleHostApi().sendNewsDetail(param);
+                    }
                   },
                 );
               },
