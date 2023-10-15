@@ -2,11 +2,8 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-/// {@template post_footer}
-/// A reusable footer of a post news block widget.
-/// {@endtemplate}
 class PostFooter extends StatelessWidget {
-  /// {@macro post_footer}
+  //
   const PostFooter({
     super.key,
     this.publishedAt,

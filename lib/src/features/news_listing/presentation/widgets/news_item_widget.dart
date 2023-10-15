@@ -3,11 +3,8 @@ import 'package:app_ui/app_ui.dart';
 import 'package:news_app/src/features/news_listing/presentation/widgets/inline_image.dart';
 import 'package:news_app/src/features/news_listing/presentation/widgets/news_item_footer.dart';
 
-/// {@template post_medium_description_layout}
-/// A reusable post medium news block widget showing post description.
-/// {@endtemplate}
 class NewsItemWidget extends StatelessWidget {
-  /// {@macro post_medium_description_layout}
+  ///
   const NewsItemWidget({
     required this.title,
     required this.imageUrl,
@@ -43,10 +40,10 @@ class NewsItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.all(AppSpacing.lg),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           children: [
             Row(

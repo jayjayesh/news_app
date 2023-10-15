@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 
-/// {@template inline_image}
-/// A reusable image widget displayed inline with the content.
-/// {@endtemplate}
 class InlineImage extends StatelessWidget {
-  /// {@macro inline_image}
+  //
   const InlineImage({
     required this.imageUrl,
     this.progressIndicatorBuilder,

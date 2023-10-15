@@ -1,13 +1,20 @@
 import UIKit
 import Flutter
 
+
 private class PigeonApiImplementation: NewsArticleHostApi {
 
  func sendNewsDetail(newsArticleModel: NewsArticleModelPigeon) {
   
-    print("\(newsArticleModel.title)")
-    
-  }
+     if let vc = STORYBOARD.MAIN.instantiateViewController(withIdentifier: MAIN_STORYBOARD.NewsDetailVC.rawValue) as? NewsDetailVC {
+     
+         vc.newsArticleModel = newsArticleModel
+         UIApplication.topViewController()!.present(vc, animated: true, completion: nil)
+//         UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+     
+     }
+ 
+ }
 
 }
 

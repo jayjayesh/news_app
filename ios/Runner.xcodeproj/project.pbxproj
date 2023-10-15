@@ -11,7 +11,10 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		561D56892ADC08D20004B87D /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561D56882ADC08D20004B87D /* AppExtensions.swift */; };
 		563583662ADAF91D0048B603 /* news_pigeon.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563583652ADAF91C0048B603 /* news_pigeon.g.swift */; };
+		56A1216A2ADBC53300D48DB3 /* News_Detail_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A121692ADBC53300D48DB3 /* News_Detail_VC.swift */; };
+		56A1216C2ADBCB5D00D48DB3 /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1216B2ADBCB5D00D48DB3 /* GlobalConstant.swift */; };
 		69EB00EC3BA7893DB42841DE /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDF7968632D13F7CC1D4AA8 /* Pods_RunnerTests.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -51,7 +54,10 @@
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		513E9988C5DC5A6B19F5B55E /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		561D56882ADC08D20004B87D /* AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensions.swift; sourceTree = "<group>"; };
 		563583652ADAF91C0048B603 /* news_pigeon.g.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = news_pigeon.g.swift; sourceTree = "<group>"; };
+		56A121692ADBC53300D48DB3 /* News_Detail_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News_Detail_VC.swift; sourceTree = "<group>"; };
+		56A1216B2ADBCB5D00D48DB3 /* GlobalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
 		6A1AB2DC6A15D92F32871ABE /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		726584FE0BCF0A69598DEE48 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -106,6 +112,22 @@
 			path = RunnerTests;
 			sourceTree = "<group>";
 		};
+		56A121672ADBC4C800D48DB3 /* features */ = {
+			isa = PBXGroup;
+			children = (
+				56A121682ADBC4F300D48DB3 /* newsDetail */,
+			);
+			name = features;
+			sourceTree = "<group>";
+		};
+		56A121682ADBC4F300D48DB3 /* newsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				56A121692ADBC53300D48DB3 /* News_Detail_VC.swift */,
+			);
+			name = newsDetail;
+			sourceTree = "<group>";
+		};
 		8C5CBB54B047C8C7823B8CBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +138,6 @@
 				513E9988C5DC5A6B19F5B55E /* Pods-RunnerTests.release.xcconfig */,
 				726584FE0BCF0A69598DEE48 /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -162,6 +183,9 @@
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
+				56A1216B2ADBCB5D00D48DB3 /* GlobalConstant.swift */,
+				561D56882ADC08D20004B87D /* AppExtensions.swift */,
+				56A121672ADBC4C800D48DB3 /* features */,
 				563583652ADAF91C0048B603 /* news_pigeon.g.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
@@ -381,7 +405,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				56A1216C2ADBCB5D00D48DB3 /* GlobalConstant.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				561D56892ADC08D20004B87D /* AppExtensions.swift in Sources */,
+				56A1216A2ADBC53300D48DB3 /* News_Detail_VC.swift in Sources */,
 				563583662ADAF91D0048B603 /* news_pigeon.g.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +502,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "News App";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,6 +681,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "News App";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,6 +704,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "News App";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

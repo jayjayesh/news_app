@@ -43,7 +43,9 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
 
     state = state.copyWith(
         status: NewsHeadlinePageStatus.loaded,
-        isPaginationEnd: state.newArticles.length == response.totalResults,
+        isPaginationEnd: response.articles?.isEmpty,
+        // isPaginationEnd:
+        //     state.newArticles.length >= (response.totalResults ?? 0),
         newArticles: [...state.newArticles, ...response.articles ?? []]);
   }
 }
