@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:news_app/src/features/news_listing/presentation/view/news_headline_page.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(),
           // darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
-
+          builder: EasyLoading.init(),
           // routes: AppRoutes.routes,
 
           // Define a function to handle named routes in order to support

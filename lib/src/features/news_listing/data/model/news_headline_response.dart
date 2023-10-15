@@ -2,18 +2,21 @@ import 'package:news_app/src/features/news_listing/data/model/news_article_model
 
 class NewsHeadlinesResponse {
   String? status;
+  String? message;
   int? totalResults;
   List<NewsArticleModel>? articles;
 
-  NewsHeadlinesResponse({this.status, this.totalResults, this.articles});
+  NewsHeadlinesResponse(
+      {this.status, this.message, this.totalResults, this.articles});
 
   NewsHeadlinesResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
+    message = json['message'];
     totalResults = json['totalResults'];
     if (json['articles'] != null) {
       articles = <NewsArticleModel>[];
       json['articles'].forEach((v) {
-        articles!.add(new NewsArticleModel.fromJson(v));
+        articles!.add(NewsArticleModel.fromJson(v));
       });
     }
   }
@@ -21,6 +24,7 @@ class NewsHeadlinesResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
+    data['message'] = this.message;
     data['totalResults'] = this.totalResults;
     if (this.articles != null) {
       data['articles'] = this.articles!.map((v) => v.toJson()).toList();
