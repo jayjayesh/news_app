@@ -1,4 +1,4 @@
-# Implemented Feature
+# Implemented Features
 
 
 -- news api integration : top headline
