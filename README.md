@@ -1,16 +1,25 @@
 # news_app
 
-A new Flutter project.
+A news_app Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+`Used Flutter Version`
+Flutter 3.13.1 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision e1e47221e8
+Engine • revision b20183e040
+Tools • Dart 3.1.0 • DevTools 2.25.0
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+`Implemented Feature`
+-- news api integration : top headline
+-- pagination
+-- pull-to-refresh to fetch recent news posts
+-- filter : news source
+-- reset filter : tap on navigation_bar title to show all news top headline
+-- internet-connectivity
+-- pigeon : host api integration
+-- native news details screen : iOS only
 
 ## Assets
 
