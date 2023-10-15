@@ -8,6 +8,7 @@ class PostFooter extends StatelessWidget {
     super.key,
     this.publishedAt,
     this.author,
+    this.onTapAuthor,
     this.onShare,
     this.isContentOverlaid = false,
   });
@@ -17,6 +18,9 @@ class PostFooter extends StatelessWidget {
 
   /// The date when this post was published.
   final DateTime? publishedAt;
+
+  /// Called when the author text is tapped.
+  final VoidCallback? onTapAuthor;
 
   /// Called when the share button is tapped.
   final VoidCallback? onShare;
@@ -53,6 +57,7 @@ class PostFooter extends StatelessWidget {
                       // Define the action to be taken when the TextSpan is clicked.
                       // For example, you can navigate to another screen or open a URL.
                       print('Author clicked: $author');
+                      onTapAuthor?.call();
                     },
                 ),
                 const WidgetSpan(child: SizedBox(width: AppSpacing.sm)),

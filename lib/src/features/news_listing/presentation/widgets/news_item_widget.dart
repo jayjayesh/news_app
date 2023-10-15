@@ -13,6 +13,7 @@ class NewsItemWidget extends StatelessWidget {
     this.author,
     this.onShare,
     this.onTap,
+    this.onTapAuthor,
     super.key,
   });
 
@@ -35,6 +36,7 @@ class NewsItemWidget extends StatelessWidget {
   final String imageUrl;
 
   final VoidCallback? onTap;
+  final VoidCallback? onTapAuthor;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,7 @@ class NewsItemWidget extends StatelessWidget {
               publishedAt: publishedAt,
               author: author,
               onShare: onShare,
+              onTapAuthor: onTapAuthor,
             ),
           ],
         ),

@@ -12,24 +12,28 @@ class NewsHeadlinePageState {
     this.status = NewsHeadlinePageStatus.initial,
     this.paginationPage = 0,
     this.isPaginationEnd = false,
+    this.source = '',
     this.newArticles = const [],
   });
 
   NewsHeadlinePageStatus? status;
   int paginationPage;
   bool isPaginationEnd;
+  String source;
   List<NewsArticleModel> newArticles;
 
   NewsHeadlinePageState copyWith({
     NewsHeadlinePageStatus? status,
     int? paginationPage,
     bool? isPaginationEnd,
+    String? source,
     List<NewsArticleModel>? newArticles,
   }) {
     return NewsHeadlinePageState(
       status: status ?? this.status,
       paginationPage: paginationPage ?? this.paginationPage,
       isPaginationEnd: isPaginationEnd ?? this.isPaginationEnd,
+      source: source ?? this.source,
       newArticles: newArticles ?? this.newArticles,
     );
   }
