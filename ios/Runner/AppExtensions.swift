@@ -52,3 +52,59 @@ extension String {
     }
 }
 
+
+extension UIProgressView{
+    private struct Holder {
+        static var _progressFull:Bool = false
+        static var _completeLoading:Bool = false;
+    }
+
+    var progressFull:Bool {
+        get {
+            return Holder._progressFull
+        }
+        set(newValue) {
+            Holder._progressFull = newValue
+        }
+    }
+
+    var completeLoading:Bool {
+        get {
+            return Holder._completeLoading
+        }
+        set(newValue) {
+            Holder._completeLoading = newValue
+        }
+    }
+
+    func animateProgress(){
+        if(completeLoading){
+            return
+        }
+        UIView.animate(withDuration: 1, animations: {
+            if self.progressFull {
+                self.setProgress( 1.0, animated: true)
+            }else{
+                self.setProgress( 0.0, animated: false)
+            }
+            
+        })
+
+        progressFull = !progressFull;
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            self.animateProgress();
+        }
+    }
+
+    func startIndefinateProgress(){
+        isHidden = false
+        completeLoading = false
+        animateProgress()
+    }
+
+    func stopIndefinateProgress(){
+        completeLoading = true
+        isHidden = true
+    }
+}
