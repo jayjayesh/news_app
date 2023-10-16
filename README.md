@@ -18,6 +18,12 @@
 -- native news details screen : iOS (done) , android (todo)
 
 
+
+https://github.com/jayjayesh/news_app/assets/10362928/adb4684e-c239-4bb7-9521-247531120e2e
+
+
+
+
 ## Getting Started
 
 `Used Flutter Version`
