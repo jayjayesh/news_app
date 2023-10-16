@@ -17,7 +17,9 @@
 
 -- native news details screen : iOS (done) , android (todo)
 
--- [Watch My Video](https://github.com/jayjayesh/news_app/blob/dev-jayesh/z_screenshots/news_app_video.mov)
+-- ![Animated GIF](z_screenshots/Newtons_cradle_animation_book_2.gif)
+
+<!-- -- [Watch My Video](https://github.com/jayjayesh/news_app/blob/dev-jayesh/z_screenshots/news_app_video.mov) -->
 
 
 ## Getting Started
