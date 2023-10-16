@@ -17,6 +17,7 @@
 
 -- native news details screen : iOS (done) , android (todo)
 
+-- security : app_config.json : will not upload sensitive data to github
 
 
 https://github.com/jayjayesh/news_app/assets/10362928/adb4684e-c239-4bb7-9521-247531120e2e
