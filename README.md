@@ -33,10 +33,14 @@ Flutter 3.13.1 • channel stable
 Tools • Dart 3.1.0 • DevTools 2.25.0
 
 `To run this project`
+
 (1) create `app_config.json` file at (assets/app_config/app_config.json)
+
 (2) replace news_api_key in `app_config.json`
+
 (3) terminal : flutter pub get
 
+(4) terminal : flutter pub run
 
 ## Assets
 
