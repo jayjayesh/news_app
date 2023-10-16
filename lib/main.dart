@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/constants/app_config.dart';
 
 import 'src/app.dart';
 import 'src/features/settings/settings_controller.dart';
 import 'src/features/settings/settings_service.dart';
 
 void main() async {
+  //
+  WidgetsFlutterBinding.ensureInitialized();
+  appConfig = await loadConfig();
+
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
   final settingsController = SettingsController(SettingsService());

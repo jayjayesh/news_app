@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
 import 'package:news_app/src/features/news_listing/data/repository/news_headline_repository.dart';
 import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_page_state.dart';
@@ -58,14 +59,14 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
         'sources': state.source,
         'page': state.paginationPage,
         'pageSize': AppConstant.pageSize,
-        'apiKey': AppConstant.newsApiKey,
+        'apiKey': appConfig.newsApiKey,
       };
     } else {
       queryParameters = {
         'country': AppConstant.newsApiCountry,
         'page': state.paginationPage,
         'pageSize': AppConstant.pageSize,
-        'apiKey': AppConstant.newsApiKey,
+        'apiKey': appConfig.newsApiKey,
       };
     }
 
