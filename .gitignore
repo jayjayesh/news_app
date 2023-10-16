@@ -45,4 +45,4 @@ app.*.map.json
 
 
 # Config file
-assets/config/app_config.json
+assets/app_config/app_config.json
