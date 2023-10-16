@@ -17,7 +17,11 @@
 
 -- native news details screen : iOS (done) , android (todo)
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
+![Newtons_cradle_animation_book_2](https://github.com/jayjayesh/news_app/assets/10362928/019297fc-77a3-42f9-9040-0c2d6a582502)
+
+
+<!-- ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif) -->
 
 <!-- <img src="z_screenshots/Newtons_cradle_animation_book_2.gif" width="48" height="36" /> -->
 
