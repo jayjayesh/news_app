@@ -56,7 +56,7 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
 
     if (state.source.isNotEmpty) {
       queryParameters = {
-        'sources': state.source,
+        'sources': state.source.replaceAll(' ', '-'),
         'page': state.paginationPage,
         'pageSize': AppConstant.pageSize,
         'apiKey': appConfig.newsApiKey,
