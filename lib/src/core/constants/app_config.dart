@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 //
@@ -26,7 +27,7 @@ Future<AppConfig> loadConfig() async {
       newsApiKey: config['newsApiKey'] as String,
     );
   } catch (e) {
-    print(
+    debugPrint(
       'Error while loading project configuration, please make sure '
       'that the file located at /assets/config/config.json '
       'exists and that it contains the correct configuration.'
