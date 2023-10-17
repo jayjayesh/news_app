@@ -24,8 +24,6 @@ class NewsDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        
-        
     }
     
     func configureUI(){
@@ -36,10 +34,12 @@ class NewsDetailVC: UIViewController {
         self.webView?.allowsBackForwardNavigationGestures = true
         self.webView?.configuration.dataDetectorTypes = []
         ///
+        showActivityIndicator(show: true)
         guard let url = URL(string: newsArticleModel?.url ?? "") else {return}
         DispatchQueue.main.async  {
             self.webView?.load(URLRequest(url: url))
         }
+        
         
         /*
         ///
