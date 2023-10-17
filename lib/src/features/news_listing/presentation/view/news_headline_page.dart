@@ -8,7 +8,6 @@ import 'package:news_app/src/features/news_listing/presentation/controller/news_
 import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_provider.dart';
 import 'package:news_app/src/features/settings/settings_view.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
-
 import '../widgets/news_item_widget.dart';
 
 class NewsListingPage extends ConsumerWidget {
