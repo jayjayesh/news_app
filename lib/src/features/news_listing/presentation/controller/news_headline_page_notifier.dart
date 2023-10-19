@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news_listing/data/repository/news_headline_repository.dart';
+import 'package:news_app/src/features/news_listing/data/repository/news_headline_repository_impl.dart';
+import 'package:news_app/src/features/news_listing/domain/repository/news_headline_repository.dart';
 import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_page_state.dart';
 
 class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
@@ -9,7 +10,7 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
 
   NewsHeadlinePageNotifier(this.newsHeadlineRepository)
       : super(NewsHeadlinePageState()) {
-    fetchNewsHeadlines();
+    fetchNewsHeadline();
   }
 
   Future<void> pullToRefresh() async {
@@ -18,7 +19,7 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       isPaginationEnd: false,
       newArticles: const [],
     );
-    fetchNewsHeadlines();
+    fetchNewsHeadline();
   }
 
   void onTapNewsSource(String source) {
@@ -28,7 +29,7 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       source: source,
       newArticles: const [],
     );
-    fetchNewsHeadlines();
+    fetchNewsHeadline();
   }
 
   void onTapAllHeadline() {
@@ -38,10 +39,10 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       isPaginationEnd: false,
       newArticles: const [],
     );
-    fetchNewsHeadlines();
+    fetchNewsHeadline();
   }
 
-  Future<void> fetchNewsHeadlines() async {
+  Future<void> fetchNewsHeadline() async {
     if (state.status == NewsHeadlinePageStatus.loading ||
         state.isPaginationEnd) {
       return;
@@ -71,8 +72,8 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
     }
 
     try {
-      var response =
-          await newsHeadlineRepository.fetchNewsHeadline(queryParameters);
+      var response = await newsHeadlineRepository
+          .fetchNewsHeadlineRepoRequest(queryParameters);
       if (response.articles!.isNotEmpty) {}
 
       state = state.copyWith(
