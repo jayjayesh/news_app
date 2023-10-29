@@ -1,4 +1,4 @@
-# Implemented Feature
+# Implemented Features
 
 
 -- news api integration : top headline
@@ -16,6 +16,10 @@
 -- pigeon : host api integration
 
 -- native news details screen : iOS (done) , android (todo)
+
+-- security : app_config.json : will not upload sensitive data to github
+
+-- unit test : implemented test for all api integrated in this app
 
 
 
@@ -36,11 +40,13 @@ Tools • Dart 3.1.0 • DevTools 2.25.0
 
 (1) create `app_config.json` file at (assets/app_config/app_config.json)
 
-(2) replace news_api_key in `app_config.json`
+(2) copy content from file `app_config.json.temp` past that into `app_config.json` 
 
-(3) terminal : flutter pub get
+(3) replace news_api_key in `app_config.json`
 
-(4) terminal : flutter pub run
+(4) terminal : flutter pub get
+
+(5) terminal : flutter pub run
 
 ## Assets
 
