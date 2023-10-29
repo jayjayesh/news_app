@@ -5,14 +5,16 @@ import 'package:news_app/src/core/utility/app_toast.dart';
 import 'package:news_app/src/features/news_listing/data/api/news_api.dart';
 import 'package:news_app/src/features/news_listing/data/model/news_article_model.dart';
 import 'package:news_app/src/features/news_listing/data/model/news_headline_response.dart';
+import 'package:news_app/src/features/news_listing/domain/repository/news_headline_repository.dart';
 
-class NewsHeadlineRepository {
+class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
   final NewsAPI _newsAPI;
 
-  NewsHeadlineRepository(this._newsAPI);
+  NewsHeadlineRepositoryImpl(this._newsAPI);
 
-  Future<NewsHeadlinesResponse> fetchNewsHeadline(
-      Map<String, dynamic>? queryParameters) async {
+  @override
+  Future<NewsHeadlinesResponse> fetchNewsHeadlineRepoRequest(
+      Map<String, dynamic> queryParameters) async {
     try {
       final res = await _newsAPI.fetchNewsHeadlineApiRequest(queryParameters);
       final newsHeadlineResponse = NewsHeadlinesResponse.fromJson(res);
