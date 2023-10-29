@@ -34,26 +34,21 @@ void main() async {
     ],
   );
 
-  setUpAll(() {
-    mockNewsHeadlineRepository = MockNewsHeadlineRepository();
-    newsHeadlinePageNotifier =
-        NewsHeadlinePageNotifier(mockNewsHeadlineRepository);
-  });
-
   group('news headline page notifier ...', () {
     test('fetchNewsHeadlines() should load news headlines from the repository',
         () async {
       // Arrange
-      when(mockNewsHeadlineRepository.fetchNewsHeadlineRepoRequest({}))
-          .thenAnswer((_) async => newsHeadlinesResponseObjc);
+      when(() => mockNewsHeadlineRepository.fetchNewsHeadlineRepoRequest(any()))
+          .thenAnswer((_) => Future.value(newsHeadlinesResponseObjc));
 
       // Act
       await newsHeadlinePageNotifier.fetchNewsHeadline();
 
       // Assert
-      expect(
+      expectLater(
           newsHeadlinePageNotifier.state.status, NewsHeadlinePageStatus.loaded);
-      expect(newsHeadlinePageNotifier.state.newArticles.first.title, 'Title 1');
+      expectLater(
+          newsHeadlinePageNotifier.state.newArticles.first.title, 'Title 1');
     });
   });
 }

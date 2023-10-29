@@ -26,18 +26,4 @@ class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
       rethrow;
     }
   }
-
-  // Future<NewsHeadlinesResponse> fetchNewsHeadlineRepoRequest(
-  //     Map<String, dynamic>? queryParameters) async {
-  //   try {
-  //     final res = await _newsAPI.fetchNewsHeadlineApiRequest(queryParameters);
-  //     final newsHeadlineResponse = NewsHeadlinesResponse.fromJson(res);
-  //     return newsHeadlineResponse;
-  //   } on DioException catch (e) {
-  //     final errorMessage = DioExceptions.fromDioError(e);
-  //     debugPrint(errorMessage.toString());
-  //     AppToast.show(message: errorMessage.toString());
-  //     rethrow;
-  //   }
-  // }
 }
