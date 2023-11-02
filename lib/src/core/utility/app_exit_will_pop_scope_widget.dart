@@ -4,21 +4,24 @@ import 'package:news_app/src/features/news_listing/presentation/view/news_headli
 
 DateTime lastTimeBackButtonWasClicked = DateTime.now();
 
-class AppExitWillPopScopeWidget extends ConsumerStatefulWidget {
+class AppExitWillPopScopeWidget extends StatefulWidget {
   const AppExitWillPopScopeWidget({super.key, required this.child});
   final Widget child;
 
   @override
-  ConsumerState<AppExitWillPopScopeWidget> createState() =>
+  State<AppExitWillPopScopeWidget> createState() =>
       _AppExitWillPopScopeWidgetState();
 }
 
-class _AppExitWillPopScopeWidgetState
-    extends ConsumerState<AppExitWillPopScopeWidget> {
+class _AppExitWillPopScopeWidgetState extends State<AppExitWillPopScopeWidget> {
+  @override
+  void initState() {
+    super.initState();
+    lastTimeBackButtonWasClicked = DateTime.now();
+  }
+
   @override
   Widget build(BuildContext context) {
-    lastTimeBackButtonWasClicked = DateTime.now();
-
     return WillPopScope(
       onWillPop:
           ModalRoute.of(context)?.settings.name != NewsListingPage.routeName
