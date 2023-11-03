@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:news_app/src/features/news_listing/presentation/view/news_headline_page.dart';
+import 'package:news_app/src/features/news/presentation/view/news_headline_page.dart';
+import 'package:news_app/src/features/news/presentation/view/news_source_page.dart';
 import 'features/settings/settings_controller.dart';
 import 'features/settings/settings_view.dart';
 
@@ -71,6 +72,8 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case NewsListingPage.routeName:
                     return const NewsListingPage();
+                  case NewsSourceListingPage.routeName:
+                    return const NewsSourceListingPage();
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   default:
