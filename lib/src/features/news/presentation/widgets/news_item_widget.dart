@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_ui/app_ui.dart';
-import 'package:news_app/src/features/news_listing/presentation/widgets/inline_image.dart';
-import 'package:news_app/src/features/news_listing/presentation/widgets/news_item_footer.dart';
+import 'package:news_app/src/features/news/presentation/widgets/inline_image.dart';
+import 'package:news_app/src/features/news/presentation/widgets/news_item_footer.dart';
 
 class NewsItemWidget extends StatelessWidget {
   ///

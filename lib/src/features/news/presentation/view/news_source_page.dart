@@ -3,43 +3,27 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
+import 'package:news_app/src/core/utility/app_exit_will_pop_scope_widget.dart';
 import 'package:news_app/src/core/utility/app_scaffold_body.dart';
-import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_page_state.dart';
-import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_provider.dart';
-import 'package:news_app/src/features/settings/settings_view.dart';
+import 'package:news_app/src/features/news/presentation/controller/news_headline_page_state.dart';
+import 'package:news_app/src/features/news/presentation/controller/all_news_providers.dart';
+import 'package:news_app/src/features/news/presentation/controller/news_source_page_state.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
 import '../widgets/news_item_widget.dart';
 
-class NewsListingPage extends ConsumerWidget {
-  const NewsListingPage({super.key});
+class NewsSourceListingPage extends ConsumerWidget {
+  const NewsSourceListingPage({super.key});
 
-  static const routeName = '/';
+  static const routeName = '/newsSource';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 1 -------------------------
-    final newArticles = ref.watch(newsHeadlinePageNotifierProvider).newArticles;
-    // 2 -------------------------
-    final status = ref.watch(newsHeadlinePageNotifierProvider).status;
-    // 3 -------------------------
-    final selectedNewsSource =
-        ref.watch(newsHeadlinePageNotifierProvider).source;
+    final source = ref.watch(newsSourcePageNotifierProvider).source;
 
     return Scaffold(
       appBar: AppBar(
-        title: GestureDetector(
-          onTap: () {
-            if (selectedNewsSource.isNotEmpty) {
-              ref
-                  .read(newsHeadlinePageNotifierProvider.notifier)
-                  .onTapAllHeadline();
-            }
-          },
-          child: Text(
-            selectedNewsSource.isEmpty ? 'Headlines' : 'All Headlines',
-            // style: Theme.of(context).textTheme.headlineSmall,
-          ), // Text displayed on the button
-        ),
+        title: Text(source),
         actions: [
           IconButton(
             icon: const Icon(Icons.south_rounded),
@@ -58,14 +42,19 @@ class NewsListingPage extends ConsumerWidget {
             if (scrollInfo.metrics.pixels ==
                 scrollInfo.metrics.maxScrollExtent) {
               ref
-                  .read(newsHeadlinePageNotifierProvider.notifier)
+                  .read(newsSourcePageNotifierProvider.notifier)
                   .fetchNewsHeadline();
             }
             return false;
           },
           child: Builder(builder: (context) {
-            if (status != NewsHeadlinePageStatus.loading &&
-                newArticles.isEmpty) {
+            // 1 -------------------------
+            final newArticles =
+                ref.watch(newsSourcePageNotifierProvider).newArticles;
+            // 2 -------------------------
+            final status = ref.watch(newsSourcePageNotifierProvider).status;
+            debugPrint('NewsSourcePageState.status = $status');
+            if (status == STATUS.loaded && newArticles.isEmpty) {
               return Center(
                 child: Text(
                   'No Results Found',
@@ -78,9 +67,9 @@ class NewsListingPage extends ConsumerWidget {
             return RefreshIndicator(
               onRefresh: () async {
                 await Future.delayed(const Duration(seconds: 2));
-                ref
-                    .read(newsHeadlinePageNotifierProvider.notifier)
-                    .pullToRefresh();
+                // ref
+                //     .read(newsSourcePageNotifierProvider.notifier)
+                //     .pullToRefresh();
               },
               child: ListView.builder(
                 padding: const EdgeInsets.only(bottom: 50),
@@ -90,7 +79,7 @@ class NewsListingPage extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   ///--------------
                   if (index == newArticles.length) {
-                    if (status == NewsHeadlinePageStatus.loading) {
+                    if (status == STATUS.loading) {
                       return const Center(
                         child: Padding(
                           padding: EdgeInsets.only(top: 8, bottom: 20),
@@ -117,9 +106,9 @@ class NewsListingPage extends ConsumerWidget {
                         }
                       },
                       onTapAuthor: () {
-                        ref
-                            .read(newsHeadlinePageNotifierProvider.notifier)
-                            .onTapNewsSource('${item.source?.name}');
+                        // ref
+                        //     .read(newsSourcePageNotifierProvider.notifier)
+                        //     .onTapNewsSource('${item.source?.name}', context);
                       });
                 },
               ),

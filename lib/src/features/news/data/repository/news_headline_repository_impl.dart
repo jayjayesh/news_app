@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/src/core/network/dio_exceptions.dart';
 import 'package:news_app/src/core/utility/app_toast.dart';
-import 'package:news_app/src/features/news_listing/data/api/news_api.dart';
-import 'package:news_app/src/features/news_listing/data/model/news_article_model.dart';
-import 'package:news_app/src/features/news_listing/data/model/news_headline_response.dart';
-import 'package:news_app/src/features/news_listing/domain/repository/news_headline_repository.dart';
+import 'package:news_app/src/features/news/data/api/news_api.dart';
+import 'package:news_app/src/features/news/data/model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/model/news_headline_response.dart';
+import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
 
 class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
   final NewsAPI _newsAPI;

@@ -7,3 +7,10 @@ class AppConstant {
       'https://placehold.jp/30/969696/ffffff/300x150.png?text=news';
   // static String noImageUrl = 'https://placehold.co/600x400?text=news';
 }
+
+enum STATUS {
+  initial,
+  loading,
+  loaded,
+  error,
+}
