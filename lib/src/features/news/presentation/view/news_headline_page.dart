@@ -5,9 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
 import 'package:news_app/src/core/utility/app_exit_will_pop_scope_widget.dart';
 import 'package:news_app/src/core/utility/app_scaffold_body.dart';
-import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_page_state.dart';
-import 'package:news_app/src/features/news_listing/presentation/controller/news_headline_provider.dart';
-import 'package:news_app/src/features/settings/settings_view.dart';
+import 'package:news_app/src/features/news/presentation/controller/news_headline_page_state.dart';
+import 'package:news_app/src/features/news/presentation/controller/all_news_providers.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
 import '../widgets/news_item_widget.dart';
 
@@ -18,10 +17,6 @@ class NewsListingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 1 -------------------------
-    final newArticles = ref.watch(newsHeadlinePageNotifierProvider).newArticles;
-    // 2 -------------------------
-    final status = ref.watch(newsHeadlinePageNotifierProvider).status;
     // 3 -------------------------
     final selectedNewsSource =
         ref.watch(newsHeadlinePageNotifierProvider).source;
@@ -66,8 +61,14 @@ class NewsListingPage extends ConsumerWidget {
               return false;
             },
             child: Builder(builder: (context) {
-              if (status != NewsHeadlinePageStatus.loading &&
-                  newArticles.isEmpty) {
+              // 1 -------------------------
+              final newArticles =
+                  ref.watch(newsHeadlinePageNotifierProvider).newArticles;
+              // 2 -------------------------
+              final status = ref.watch(newsHeadlinePageNotifierProvider).status;
+
+              ///
+              if (status != STATUS.loading && newArticles.isEmpty) {
                 return Center(
                   child: Text(
                     'No Results Found',
@@ -92,7 +93,7 @@ class NewsListingPage extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     ///--------------
                     if (index == newArticles.length) {
-                      if (status == NewsHeadlinePageStatus.loading) {
+                      if (status == STATUS.loading) {
                         return const Center(
                           child: Padding(
                             padding: EdgeInsets.only(top: 8, bottom: 20),
@@ -122,7 +123,7 @@ class NewsListingPage extends ConsumerWidget {
                         onTapAuthor: () {
                           ref
                               .read(newsHeadlinePageNotifierProvider.notifier)
-                              .onTapNewsSource('${item.source?.name}');
+                              .onTapNewsSource('${item.source?.name}', context);
                         });
                   },
                 ),

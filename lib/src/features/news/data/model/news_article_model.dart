@@ -1,4 +1,4 @@
-import 'package:news_app/src/features/news_listing/data/model/news_article_source_model.dart';
+import 'package:news_app/src/features/news/data/model/news_article_source_model.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
 
 class NewsArticleModel {
