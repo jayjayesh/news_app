@@ -1,5 +1,5 @@
-import 'package:news_app/src/features/news/data/model/news_article_source_model.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
+import '../NewsArticleSourceModel/news_article_source_model.dart';
 
 class NewsArticleModel {
   NewsArticleSourceModel? source;
@@ -23,7 +23,7 @@ class NewsArticleModel {
 
   NewsArticleModel.fromJson(Map<String, dynamic> json) {
     source = json['source'] != null
-        ? new NewsArticleSourceModel.fromJson(json['source'])
+        ? NewsArticleSourceModel.fromJson(json['source'])
         : null;
     author = json['author'];
     title = json['title'];

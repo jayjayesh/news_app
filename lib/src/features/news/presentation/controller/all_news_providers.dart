@@ -12,9 +12,11 @@ final newsApiProvider = Provider<NewsAPI>((ref) {
   return NewsAPI(ref.read(dioClientProvider));
 });
 
-final newsHeadlineRepositoryProvider = Provider<NewsHeadlineRepository>((ref) {
-  return NewsHeadlineRepositoryImpl(ref.read(newsApiProvider));
-});
+final newsHeadlineRepositoryProvider = Provider<NewsHeadlineRepository>(
+  (ref) {
+    return NewsHeadlineRepositoryImpl(ref.read(newsApiProvider));
+  },
+);
 
 final newsHeadlinePageNotifierProvider = StateNotifierProvider.autoDispose<
     NewsHeadlinePageNotifier, NewsHeadlinePageState>((ref) {
@@ -22,11 +24,13 @@ final newsHeadlinePageNotifierProvider = StateNotifierProvider.autoDispose<
 });
 
 final newsSourcePageNotifierProvider = StateNotifierProvider.autoDispose<
-    NewsSourcePageNotifier, NewsSourcePageState>((ref) {
-  final source = ref.read(newsHeadlinePageNotifierProvider).source;
+    NewsSourcePageNotifier, NewsSourcePageState>(
+  (ref) {
+    final source = ref.read(newsHeadlinePageNotifierProvider).source;
 
-  return NewsSourcePageNotifier(
-    ref.read(newsHeadlineRepositoryProvider),
-    source,
-  );
-});
+    return NewsSourcePageNotifier(
+      ref.read(newsHeadlineRepositoryProvider),
+      source,
+    );
+  },
+);

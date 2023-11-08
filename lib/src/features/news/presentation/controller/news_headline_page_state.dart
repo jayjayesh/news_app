@@ -1,5 +1,5 @@
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/model/news_article_model/news_article_model.dart';
 
 class NewsHeadlinePageState {
   NewsHeadlinePageState({
