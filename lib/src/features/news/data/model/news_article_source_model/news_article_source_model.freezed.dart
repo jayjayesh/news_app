@@ -21,8 +21,8 @@ NewsArticleSourceModel _$NewsArticleSourceModelFromJson(
 
 /// @nodoc
 mixin _$NewsArticleSourceModel {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $NewsArticleSourceModelCopyWith<$Res> {
           $Res Function(NewsArticleSourceModel) then) =
       _$NewsArticleSourceModelCopyWithImpl<$Res, NewsArticleSourceModel>;
   @useResult
-  $Res call({String id, String name});
+  $Res call({String? id, String? name});
 }
 
 /// @nodoc
@@ -53,18 +53,18 @@ class _$NewsArticleSourceModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
+    Object? id = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$NewsArticleSourceModelImplCopyWith<$Res>
       __$$NewsArticleSourceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name});
+  $Res call({String? id, String? name});
 }
 
 /// @nodoc
@@ -94,18 +94,18 @@ class __$$NewsArticleSourceModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
+    Object? id = freezed,
+    Object? name = freezed,
   }) {
     return _then(_$NewsArticleSourceModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -113,17 +113,15 @@ class __$$NewsArticleSourceModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NewsArticleSourceModelImpl implements _NewsArticleSourceModel {
-  const _$NewsArticleSourceModelImpl({this.id = '', this.name = ''});
+  const _$NewsArticleSourceModelImpl({this.id, this.name});
 
   factory _$NewsArticleSourceModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsArticleSourceModelImplFromJson(json);
 
   @override
-  @JsonKey()
-  final String id;
+  final String? id;
   @override
-  @JsonKey()
-  final String name;
+  final String? name;
 
   @override
   String toString() {
@@ -159,16 +157,16 @@ class _$NewsArticleSourceModelImpl implements _NewsArticleSourceModel {
 }
 
 abstract class _NewsArticleSourceModel implements NewsArticleSourceModel {
-  const factory _NewsArticleSourceModel({final String id, final String name}) =
-      _$NewsArticleSourceModelImpl;
+  const factory _NewsArticleSourceModel(
+      {final String? id, final String? name}) = _$NewsArticleSourceModelImpl;
 
   factory _NewsArticleSourceModel.fromJson(Map<String, dynamic> json) =
       _$NewsArticleSourceModelImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get name;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$$NewsArticleSourceModelImplCopyWith<_$NewsArticleSourceModelImpl>

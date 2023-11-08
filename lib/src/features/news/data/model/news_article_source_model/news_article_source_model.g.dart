@@ -9,8 +9,8 @@ part of 'news_article_source_model.dart';
 _$NewsArticleSourceModelImpl _$$NewsArticleSourceModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NewsArticleSourceModelImpl(
-      id: json['id'] as String? ?? '',
-      name: json['name'] as String? ?? '',
+      id: json['id'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$NewsArticleSourceModelImplToJson(

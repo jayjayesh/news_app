@@ -6,8 +6,8 @@ part 'news_article_source_model.g.dart';
 class NewsArticleSourceModel with _$NewsArticleSourceModel {
   ///
   const factory NewsArticleSourceModel({
-    @Default('') String id,
-    @Default('') String name,
+    String? id,
+    String? name,
   }) = _NewsArticleSourceModel;
 
   ///

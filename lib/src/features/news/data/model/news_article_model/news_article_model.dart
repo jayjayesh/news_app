@@ -1,54 +1,32 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
-import '../NewsArticleSourceModel/news_article_source_model.dart';
+import '../news_article_source_model/news_article_source_model.dart';
 
-class NewsArticleModel {
-  NewsArticleSourceModel? source;
-  String? author;
-  String? title;
-  String? description;
-  String? url;
-  String? urlToImage;
-  String? publishedAt;
-  String? content;
+part 'news_article_model.freezed.dart';
+part 'news_article_model.g.dart';
 
-  NewsArticleModel(
-      {this.source,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+@freezed
+class NewsArticleModel with _$NewsArticleModel {
+  const factory NewsArticleModel({
+    NewsArticleSourceModel? source,
+    String? author,
+    String? title,
+    String? description,
+    String? url,
+    String? urlToImage,
+    String? publishedAt,
+    String? content,
+  }) = _NewsArticleModel;
 
-  NewsArticleModel.fromJson(Map<String, dynamic> json) {
-    source = json['source'] != null
-        ? NewsArticleSourceModel.fromJson(json['source'])
-        : null;
-    author = json['author'];
-    title = json['title'];
-    description = json['description'];
-    url = json['url'];
-    urlToImage = json['urlToImage'];
-    publishedAt = json['publishedAt'];
-    content = json['content'];
-  }
+  factory NewsArticleModel.fromJson(Map<String, dynamic> json) =>
+      _$NewsArticleModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.source != null) {
-      data['source'] = this.source!.toJson();
-    }
-    data['author'] = this.author;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['url'] = this.url;
-    data['urlToImage'] = this.urlToImage;
-    data['publishedAt'] = this.publishedAt;
-    data['content'] = this.content;
-    return data;
-  }
+  /// Extra methods
+  /// as per freezed documentation : to add manual methods in data_class
+  /// Added constructor. Must not have any parameter
+  const NewsArticleModel._();
 
+  ///
   NewsArticleModelPigeon mapToNewsArticleModelPigeon() {
     return NewsArticleModelPigeon(
       author: this.author,
@@ -65,3 +43,6 @@ class NewsArticleModel {
     );
   }
 }
+
+/// Extra
+class NewsArticleModelMapper {}
