@@ -39,6 +39,7 @@ class DioExceptions implements Exception {
     }
   }
 
+  // TODO : Add possible error status code here
   String _handleError(int? statusCode, dynamic error) {
     switch (statusCode) {
       case 400:
@@ -51,6 +52,12 @@ class DioExceptions implements Exception {
         return error['message'];
       case 420:
         return 'Session Expired. Please LogIn again';
+      //-- Added by Developer : start ------
+      case 426:
+        return error['message'] ?? 'Too Many Requests';
+      case 429:
+        return error['message'] ?? 'Too Many Requests';
+      //-- Added by Developer : end ------
       case 500:
         return error['message'] ?? 'Internal server error';
       case 502:
