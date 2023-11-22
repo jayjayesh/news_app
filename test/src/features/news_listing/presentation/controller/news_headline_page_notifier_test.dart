@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/model/news_article_model/news_article_model.dart';
 import 'package:news_app/src/features/news/data/model/news_headline_response.dart';
 import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
 import 'package:news_app/src/features/news/presentation/controller/news_headline_page_notifier.dart';

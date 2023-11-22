@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
@@ -15,7 +17,30 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
   NewsHeadlinePageNotifier(this.newsHeadlineRepository)
       : super(NewsHeadlinePageState()) {
     fetchNewsHeadline();
+    // startTimer();
   }
+
+  // NOTE: Use this code to exceed api limit : status code 426
+  /*
+  static late Timer _timer;
+  static int _start = 1000;
+
+  void startTimer() {
+    const twoSec = const Duration(seconds: 2);
+    _timer = Timer.periodic(
+      twoSec,
+      (Timer timer) {
+        if (_start == 0) {
+          timer.cancel();
+        } else {
+          _start--;
+          fetchNewsHeadline();
+        }
+      },
+    );
+  }
+
+  */
 
   Future<void> pullToRefresh() async {
     state = state.copyWith(
