@@ -1,6 +1,6 @@
 # Implemented Features
 
--- clean architecture to achive modular code, scalability, code testability 
+-- clean architecture to achive : modular code, scalability, code testability 
 
 -- news api integration : top headline
 
