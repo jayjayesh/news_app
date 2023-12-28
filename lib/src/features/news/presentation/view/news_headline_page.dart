@@ -5,9 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
 import 'package:news_app/src/core/utility/app_exit_will_pop_scope_widget.dart';
 import 'package:news_app/src/core/utility/app_scaffold_body.dart';
-import 'package:news_app/src/features/news/presentation/controller/news_headline_page_state.dart';
 import 'package:news_app/src/features/news/presentation/controller/all_news_providers.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
+
 import '../widgets/news_item_widget.dart';
 
 class NewsListingPage extends ConsumerWidget {
@@ -18,22 +18,26 @@ class NewsListingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 3 -------------------------
-    final selectedNewsSource =
-        ref.watch(newsHeadlinePageNotifierProvider).source;
+    // final selectedNewsSource = ref
+    //     .watch(newsHeadlinePageNotifierProvider.select((value) => value))
+    //     .source;
+    final status = ref.watch(
+        newsHeadlinePageNotifierProvider.select((value) => value.status));
 
     return AppExitWillPopScopeWidget(
       child: Scaffold(
         appBar: AppBar(
           title: GestureDetector(
             onTap: () {
-              if (selectedNewsSource.isNotEmpty) {
+              if (status != STATUS.loading) {
                 ref
                     .read(newsHeadlinePageNotifierProvider.notifier)
                     .onTapAllHeadline();
               }
             },
-            child: Text(
-              selectedNewsSource.isEmpty ? 'Headlines' : 'All Headlines',
+            child: const Text(
+              'News Headlines',
+              // selectedNewsSource.isEmpty ? 'Headlines' : 'All Headlines',
               // style: Theme.of(context).textTheme.headlineSmall,
             ), // Text displayed on the button
           ),
@@ -60,12 +64,12 @@ class NewsListingPage extends ConsumerWidget {
               }
               return false;
             },
-            child: Builder(builder: (context) {
+            child: Consumer(builder: (context, ref, child) {
               // 1 -------------------------
-              final newArticles =
-                  ref.watch(newsHeadlinePageNotifierProvider).newArticles;
+              final newArticles = ref.watch(newsHeadlinePageNotifierProvider
+                  .select((value) => value.newArticles));
               // 2 -------------------------
-              final status = ref.watch(newsHeadlinePageNotifierProvider).status;
+              //final status = ref.watch(newsHeadlinePageNotifierProvider.select((value) => value.status));
 
               ///
               if (status != STATUS.loading && newArticles.isEmpty) {
