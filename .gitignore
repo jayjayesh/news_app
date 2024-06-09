@@ -46,3 +46,5 @@ app.*.map.json
 
 # Config file
 /assets/app_config/app_config.json
+.idx/dev.nix
+packages/app_ui/pubspec.lock
