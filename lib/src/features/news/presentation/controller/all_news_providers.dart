@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/shared_provider/shared_providers.dart';
-import 'package:news_app/src/features/news/data/api/news_api.dart';
+import 'package:news_app/src/features/news/data/datasource/news_remote_data_source.dart';
 import 'package:news_app/src/features/news/data/repository/news_headline_repository_impl.dart';
 import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
 import 'package:news_app/src/features/news/presentation/controller/news_headline_page_notifier.dart';
@@ -8,8 +8,8 @@ import 'package:news_app/src/features/news/presentation/controller/news_headline
 import 'package:news_app/src/features/news/presentation/controller/news_source_page_notifier.dart';
 import 'package:news_app/src/features/news/presentation/controller/news_source_page_state.dart';
 
-final newsApiProvider = Provider<NewsAPI>((ref) {
-  return NewsAPI(ref.read(dioClientProvider));
+final newsApiProvider = Provider<NewsRemoteDataSource>((ref) {
+  return NewsRemoteDataSourceImpl(ref.read(dioClientProvider));
 });
 
 final newsHeadlineRepositoryProvider = Provider<NewsHeadlineRepository>(
