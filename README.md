@@ -33,7 +33,7 @@ https://github.com/jayjayesh/news_app/assets/10362928/adb4684e-c239-4bb7-9521-24
 
 `Used Flutter Version`
 
-Flutter 3.13.1 • channel stable
+Flutter 3.22.1 • channel stable
 
 Tools • Dart 3.1.0 • DevTools 2.25.0
 
