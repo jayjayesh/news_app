@@ -43,7 +43,7 @@ Tools • Dart 3.1.0 • DevTools 2.25.0
 
 (2) copy content from file `app_config.json.temp` past that into `app_config.json` 
 
-(3) replace news_api_key in `app_config.json`
+(3) create your own api_key at : [newsapi.org](https://newsapi.org) and replace base_url and news_api_key in `app_config.json` 
 
 (4) terminal : flutter pub get
 
