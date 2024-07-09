@@ -49,6 +49,9 @@ Tools • Dart 3.1.0 • DevTools 2.25.0
 
 (5) terminal : flutter pub run
 
+## Open-Source Contribution
+For those who wish to contribute in this project, Please follow git commit message rule : [How to Write Better Git Commit Messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages)
+
 ## Assets
 
 The `assets` directory houses images, fonts, and any other files you want to
