@@ -8,8 +8,8 @@ import 'package:news_app/src/features/news/presentation/controller/news_headline
 import 'package:news_app/src/features/news/presentation/controller/news_source_page_notifier.dart';
 import 'package:news_app/src/features/news/presentation/controller/news_source_page_state.dart';
 
-final newsApiProvider = Provider<NewsAPI>((ref) {
-  return NewsAPI(ref.read(dioClientProvider));
+final newsApiProvider = Provider<NewsRemoteDataSource>((ref) {
+  return NewsRemoteDataSourceImpl(ref.read(dioClientProvider));
 });
 
 final newsHeadlineRepositoryProvider = Provider<NewsHeadlineRepository>(

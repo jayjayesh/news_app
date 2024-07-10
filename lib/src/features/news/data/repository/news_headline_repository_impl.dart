@@ -8,7 +8,7 @@ import 'package:news_app/src/features/news/data/model/news_headline_response.dar
 import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
 
 class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
-  final NewsAPI _newsAPI;
+  final NewsRemoteDataSource _newsAPI;
 
   NewsHeadlineRepositoryImpl(this._newsAPI);
 
