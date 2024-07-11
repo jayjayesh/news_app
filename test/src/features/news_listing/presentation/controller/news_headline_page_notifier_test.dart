@@ -3,11 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/model/news_article_model/news_article_model.dart';
-import 'package:news_app/src/features/news/data/model/news_headline_response.dart';
-import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
-import 'package:news_app/src/features/news/presentation/controller/news_headline_page_notifier.dart';
-import 'package:news_app/src/features/news/presentation/controller/news_headline_page_state.dart';
+import 'package:news_app/src/features/news/data/models/news_article_model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/models/news_headline_response.dart';
+import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
+import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_notifier.dart';
+import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_state.dart';
 
 class MockNewsHeadlineRepository extends Mock
     implements NewsHeadlineRepository {}

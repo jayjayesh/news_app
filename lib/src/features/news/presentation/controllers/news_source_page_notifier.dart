@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
-import 'package:news_app/src/features/news/presentation/controller/news_source_page_state.dart';
+import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
+import 'package:news_app/src/features/news/presentation/controllers/news_source_page_state.dart';
 
 class NewsSourcePageNotifier extends StateNotifier<NewsSourcePageState> {
   final NewsHeadlineRepository newsHeadlineRepository;
