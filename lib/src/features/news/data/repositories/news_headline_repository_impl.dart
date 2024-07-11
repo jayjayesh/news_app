@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/src/core/network/dio_exceptions.dart';
 import 'package:news_app/src/core/utility/app_toast.dart';
-import 'package:news_app/src/features/news/data/data_source/news_remote_data_source.dart';
-import 'package:news_app/src/features/news/data/model/news_article_model/news_article_model.dart';
-import 'package:news_app/src/features/news/data/model/news_headline_response.dart';
-import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
+import 'package:news_app/src/features/news/data/datasource/news_remote_data_source.dart';
+import 'package:news_app/src/features/news/data/models/news_article_model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/models/news_headline_response.dart';
+import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
 
 class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
   final NewsRemoteDataSource _newsAPI;

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
 import 'package:news_app/src/core/utility/app_exit_will_pop_scope_widget.dart';
 import 'package:news_app/src/core/utility/app_scaffold_body.dart';
-import 'package:news_app/src/features/news/presentation/controller/all_news_providers.dart';
+import 'package:news_app/src/features/news/presentation/controllers/all_news_providers.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
 
 import '../widgets/news_item_widget.dart';

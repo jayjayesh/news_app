@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/repository/news_headline_repository_impl.dart';
-import 'package:news_app/src/features/news/domain/repository/news_headline_repository.dart';
-import 'package:news_app/src/features/news/presentation/controller/news_headline_page_state.dart';
-import 'package:news_app/src/features/news/presentation/view/news_headline_page.dart';
-import 'package:news_app/src/features/news/presentation/view/news_source_page.dart';
+import 'package:news_app/src/features/news/data/repositories/news_headline_repository_impl.dart';
+import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
+import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_state.dart';
+import 'package:news_app/src/features/news/presentation/pages/news_headline_page.dart';
+import 'package:news_app/src/features/news/presentation/pages/news_source_page.dart';
 
 class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
   final NewsHeadlineRepository newsHeadlineRepository;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/src/features/news/presentation/view/news_headline_page.dart';
+import 'package:news_app/src/features/news/presentation/pages/news_headline_page.dart';
 
 DateTime lastTimeBackButtonWasClicked = DateTime.now();
 
