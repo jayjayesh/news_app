@@ -1,4 +1,4 @@
 {
-  "baseUrl": "your_baseUrl"
-  "newsApiKey": "your_news_api_key",
+  "baseUrl": "your_baseUrl",
+  "newsApiKey": "your_news_api_key"
 }

@@ -1,8 +1,8 @@
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/model/news_article_model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/models/news_article_model/news_article_model.dart';
 
-class NewsSourcePageState {
-  NewsSourcePageState({
+class NewsHeadlinePageState {
+  NewsHeadlinePageState({
     this.status = STATUS.initial,
     this.paginationPage = 0,
     this.isPaginationEnd = false,
@@ -16,14 +16,14 @@ class NewsSourcePageState {
   String source;
   List<NewsArticleModel> newArticles;
 
-  NewsSourcePageState copyWith({
+  NewsHeadlinePageState copyWith({
     STATUS? status,
     int? paginationPage,
     bool? isPaginationEnd,
     String? source,
     List<NewsArticleModel>? newArticles,
   }) {
-    return NewsSourcePageState(
+    return NewsHeadlinePageState(
       status: status ?? this.status,
       paginationPage: paginationPage ?? this.paginationPage,
       isPaginationEnd: isPaginationEnd ?? this.isPaginationEnd,
