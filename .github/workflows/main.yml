@@ -1,0 +1,65 @@
+name: Build and Deploy Flutter App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # env:
+    #   ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
+    #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
+    #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.22.1'  # Use the latest stable version or specify the version you need
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build APK
+      run: flutter build apk --release
+
+    - name: Build IPA
+      run: flutter build ios --release --no-codesign
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release-apk
+        path: build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Upload IPA artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release-ipa
+        path: build/ios/ipa/Runner.ipa
+
+    # - name: Upload APK to Firebase App Distribution
+    #   run: |
+    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
+    #     unzip firebase-appdistribution-cli-linux.zip
+    #     ./firebase-appdistribution --app $ANDROID_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN app/build/outputs/flutter-apk/app-release.apk
+
+    # - name: Upload IPA to Firebase App Distribution
+    #   run: |
+    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
+    #     unzip firebase-appdistribution-cli-linux.zip
+    #     ./firebase-appdistribution --app $IOS_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN build/ios/iphoneos/Runner.app
