@@ -1,0 +1,54 @@
+name: Build and Deploy Android App
+
+on:
+  push:
+    tags:
+      - 'v.[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # env:
+    #   ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
+    #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
+    #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.22.0'  # Use the latest stable version or specify the version you need
+        channel: 'stable'
+        cache: true
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build APK
+      run: flutter build apk --release
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release-apk
+        path: build/app/outputs/flutter-apk/app-release.apk
+
+    # - name: Upload APK to Firebase App Distribution
+    #   run: |
+    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
+    #     unzip firebase-appdistribution-cli-linux.zip
+    #     ./firebase-appdistribution --app $ANDROID_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN app/build/outputs/flutter-apk/app-release.apk
+
+    # - name: Upload IPA to Firebase App Distribution
+    #   run: |
+    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
+    #     unzip firebase-appdistribution-cli-linux.zip
+    #     ./firebase-appdistribution --app $IOS_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN build/ios/iphoneos/Runner.app

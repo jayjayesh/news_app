@@ -1,4 +1,4 @@
-name: Build and Deploy Flutter App
+name: Flutter App Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     # env:
@@ -31,36 +31,12 @@ jobs:
         flutter-version: '3.22.0'  # Use the latest stable version or specify the version you need
         channel: 'stable'
         cache: true
+      
+    - name: Check Installed flutter sdk version
+      run: flutter --version
 
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Build APK
-      run: flutter build apk --release
-
-    # - name: Build IPA
-    #   run: flutter build ios --release --no-codesign
-
-    - name: Upload APK artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-release-apk
-        path: build/app/outputs/flutter-apk/app-release.apk
-
-    # - name: Upload IPA artifact
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: app-release-ipa
-    #     path: build/ios/ipa/Runner.ipa
-
-    # - name: Upload APK to Firebase App Distribution
-    #   run: |
-    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
-    #     unzip firebase-appdistribution-cli-linux.zip
-    #     ./firebase-appdistribution --app $ANDROID_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN app/build/outputs/flutter-apk/app-release.apk
-
-    # - name: Upload IPA to Firebase App Distribution
-    #   run: |
-    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
-    #     unzip firebase-appdistribution-cli-linux.zip
-    #     ./firebase-appdistribution --app $IOS_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN build/ios/iphoneos/Runner.app
+    # - name: Run Tests
+    #   run: flutter test
