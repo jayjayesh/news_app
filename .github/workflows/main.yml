@@ -17,6 +17,10 @@ jobs:
     #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
     #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
