@@ -32,14 +32,23 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
+    - name: Install pod
+      run: cd ios && pod install
+
     - name: Build IPA
       run: flutter build ios --release --no-codesign
 
+    # New step to list directory contents for troubleshooting
+    - name: List build directory
+      run: ls -R build/ios/
+
+    # runner.app to IPA == https://stackoverflow.com/a/56666092
     - name: Upload IPA artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-release-ipa
-        path: build/ios/ipa/Runner.ipa
+        path: build/ios/iphoneos/Runner.app 
+
 
     # - name: Upload APK to Firebase App Distribution
     #   run: |
