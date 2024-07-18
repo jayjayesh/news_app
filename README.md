@@ -28,6 +28,15 @@
 https://github.com/jayjayesh/news_app/assets/10362928/adb4684e-c239-4bb7-9521-247531120e2e
 
 
+## ToDo
+-- github action : add build artifacts in realease path where code snapshot is present
+-- github action : fix iOS build creating IPA
+-- github action : add auto increament build number and also rename build-name with that version number
+-- github action : upload build to firebase distibution
+-- github action : update github secrets to deploy new-api key so that created build make apk works on any device.
+-- codemagic : iOS build setup
+-- fastlane setup 
+
 
 
 ## Getting Started
