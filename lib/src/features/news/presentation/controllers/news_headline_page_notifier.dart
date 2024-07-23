@@ -1,14 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/src/core/constants/app_config.dart';
-import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/repositories/news_headline_repository_impl.dart';
-import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
-import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_state.dart';
-import 'package:news_app/src/features/news/presentation/pages/news_headline_page.dart';
-import 'package:news_app/src/features/news/presentation/pages/news_source_page.dart';
+import '../../../../core/constants/app_config.dart';
+import '../../../../core/constants/app_constants.dart';
+import '../../domain/repositories/news_headline_repository.dart';
+import 'news_headline_page_state.dart';
+import '../pages/news_source_page.dart';
 
 class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
   final NewsHeadlineRepository newsHeadlineRepository;
@@ -55,8 +52,8 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
     state = state.copyWith(
       source: source,
     );
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => NewsSourceListingPage()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const NewsSourceListingPage()));
   }
 
   void onTapAllHeadline() {
@@ -98,22 +95,24 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       };
     }
 
-    try {
-      var response = await newsHeadlineRepository
-          .fetchNewsHeadlineRepoRequest(queryParameters);
-      if (response.articles!.isNotEmpty) {}
+    var response = await newsHeadlineRepository
+        .fetchNewsHeadlineRepoRequest(queryParameters);
 
-      state = state.copyWith(
-        status: STATUS.loaded,
-        isPaginationEnd: response.articles?.isEmpty,
-        // isPaginationEnd:
-        //     state.newArticles.length >= (response.totalResults ?? 0),
-        newArticles: [...state.newArticles, ...response.articles ?? []],
-      );
-    } catch (e) {
-      state = state.copyWith(
-        status: STATUS.error,
-      );
-    }
+    response.fold(
+      (l) {
+        state = state.copyWith(
+          status: STATUS.error,
+        );
+      },
+      (r) {
+        state = state.copyWith(
+          status: STATUS.loaded,
+          isPaginationEnd: r.isEmpty,
+          // isPaginationEnd:
+          //     state.newArticles.length >= (response.totalResults ?? 0),
+          newArticles: [...state.newArticles, ...r],
+        );
+      },
+    );
   }
 }

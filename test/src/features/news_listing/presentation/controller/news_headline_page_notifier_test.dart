@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/data/models/news_article_model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/models/news_article_model.dart';
 import 'package:news_app/src/features/news/data/models/news_headline_response.dart';
+import 'package:news_app/src/features/news/domain/entities/news_article_entity.dart';
 import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
 import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_notifier.dart';
 import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_state.dart';
@@ -31,8 +33,21 @@ void main() async {
         description: 'Description 1',
         urlToImage: 'https://newsapi.com/image.png',
         url: 'https://newsapi.com/article1',
+        author: 'author 1',
+        publishedAt: '2022-02-21T12:00:00Z',
+        content: 'content 1',
       ),
     ],
+  );
+
+  var newsArticleEntityObjc = NewsArticleEntity(
+    title: 'Title 1',
+    description: 'Description 1',
+    urlToImage: 'https://newsapi.com/image.png',
+    url: 'https://newsapi.com/article1',
+    author: 'author 1',
+    publishedAt: '2022-02-21T12:00:00Z',
+    content: 'content 1',
   );
 
   group('news headline page notifier ...', () {
@@ -40,7 +55,11 @@ void main() async {
         () async {
       // Arrange
       when(() => mockNewsHeadlineRepository.fetchNewsHeadlineRepoRequest(any()))
-          .thenAnswer((_) => Future.value(newsHeadlinesResponseObjc));
+          .thenAnswer((_) => Future.value(right([
+                newsArticleEntityObjc,
+                newsArticleEntityObjc,
+                newsArticleEntityObjc,
+              ])));
 
       // Act
       await newsHeadlinePageNotifier.fetchNewsHeadline();

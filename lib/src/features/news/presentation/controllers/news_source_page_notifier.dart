@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/src/core/constants/app_config.dart';
-import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
-import 'package:news_app/src/features/news/presentation/controllers/news_source_page_state.dart';
+import '../../../../core/constants/app_config.dart';
+import '../../../../core/constants/app_constants.dart';
+import '../../domain/repositories/news_headline_repository.dart';
+import 'news_source_page_state.dart';
 
 class NewsSourcePageNotifier extends StateNotifier<NewsSourcePageState> {
   final NewsHeadlineRepository newsHeadlineRepository;
@@ -49,22 +49,21 @@ class NewsSourcePageNotifier extends StateNotifier<NewsSourcePageState> {
       };
     }
 
-    try {
-      var response = await newsHeadlineRepository
-          .fetchNewsHeadlineRepoRequest(queryParameters);
-      if (response.articles!.isNotEmpty) {}
+    var response = await newsHeadlineRepository
+        .fetchNewsHeadlineRepoRequest(queryParameters);
 
-      state = state.copyWith(
-        status: STATUS.loaded,
-        isPaginationEnd: response.articles?.isEmpty,
-        // isPaginationEnd:
-        //     state.newArticles.length >= (response.totalResults ?? 0),
-        newArticles: [...state.newArticles, ...response.articles ?? []],
-      );
-    } catch (e) {
+    response.fold((l) {
       state = state.copyWith(
         status: STATUS.error,
       );
-    }
+    }, (r) {
+      state = state.copyWith(
+        status: STATUS.loaded,
+        isPaginationEnd: r.isEmpty,
+        // isPaginationEnd:
+        //     state.newArticles.length >= (response.totalResults ?? 0),
+        newArticles: [...state.newArticles, ...r],
+      );
+    });
   }
 }
