@@ -1,14 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/src/core/constants/app_constants.dart';
-import 'package:news_app/src/core/utility/app_exit_will_pop_scope_widget.dart';
-import 'package:news_app/src/core/utility/app_scaffold_body.dart';
-import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_state.dart';
-import 'package:news_app/src/features/news/presentation/controllers/all_news_providers.dart';
-import 'package:news_app/src/features/news/presentation/controllers/news_source_page_state.dart';
-import 'package:news_app/src/news_pigeon.g.dart';
+import '../../../../core/constants/app_constants.dart';
+import '../../../../core/utility/app_scaffold_body.dart';
+import '../../../../core/providers/news_module_providers.dart';
+import '../../../../news_pigeon.g.dart';
 import '../widgets/news_item_widget.dart';
 
 class NewsSourceListingPage extends ConsumerWidget {
@@ -95,7 +91,7 @@ class NewsSourceListingPage extends ConsumerWidget {
                   var item = newArticles[index];
                   return NewsItemWidget(
                       imageUrl: item.urlToImage ?? AppConstant.placeholderImage,
-                      title: '${item.title}',
+                      title: item.title,
                       description: item.description,
                       author: '${item.source?.name}',
                       publishedAt: DateTime.parse(item.publishedAt ?? ''),

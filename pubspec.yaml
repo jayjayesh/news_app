@@ -27,6 +27,8 @@ dependencies:
   flutter_svg: ^2.0.7
   mocktail: ^0.3.0
   json_annotation: ^4.8.1
+  fpdart: ^1.1.0
+  internet_connection_checker_plus: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,29 +1,42 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:news_app/src/core/network/dio_exceptions.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:news_app/src/core/constants/app_constants.dart';
+import 'package:news_app/src/core/error/exceptions.dart';
+import 'package:news_app/src/core/error/failures.dart';
+import 'package:news_app/src/core/internet_connection_checker/connection_checker.dart';
 import 'package:news_app/src/core/utility/app_toast.dart';
 import 'package:news_app/src/features/news/data/datasource/news_remote_data_source.dart';
-import 'package:news_app/src/features/news/data/models/news_article_model/news_article_model.dart';
+import 'package:news_app/src/features/news/data/models/news_article_model.dart';
 import 'package:news_app/src/features/news/data/models/news_headline_response.dart';
 import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
 
-class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
-  final NewsRemoteDataSource _newsAPI;
+import '../../domain/entities/news_article_entity.dart';
 
-  NewsHeadlineRepositoryImpl(this._newsAPI);
+class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
+  final NewsRemoteDataSource newsRemoteDataSource;
+  final ConnectionChecker connectionChecker;
+
+  NewsHeadlineRepositoryImpl(
+    this.newsRemoteDataSource,
+    this.connectionChecker,
+  );
 
   @override
-  Future<NewsHeadlinesResponse> fetchNewsHeadlineRepoRequest(
+  Future<Either<Failure, List<NewsArticleEntity>>> fetchNewsHeadlineRepoRequest(
       Map<String, dynamic> queryParameters) async {
     try {
-      final res = await _newsAPI.fetchNewsHeadlineApiRequest(queryParameters);
+      if (!await (connectionChecker.isConnected)) {
+        return left(Failure(AppConstant.noConnectionErrorMessage));
+      }
+      final res = await newsRemoteDataSource
+          .fetchNewsHeadlineApiRequest(queryParameters);
       final newsHeadlineResponse = NewsHeadlinesResponse.fromJson(res);
-      return newsHeadlineResponse;
-    } on DioException catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e);
-      debugPrint(errorMessage.toString());
-      AppToast.show(message: errorMessage.toString());
-      rethrow;
+      if (newsHeadlineResponse.articles == null) {
+        return left(Failure('No articles found!'));
+      }
+      return right(newsHeadlineResponse.articles!);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
     }
   }
 }
