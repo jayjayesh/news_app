@@ -1,9 +1,11 @@
 import 'package:news_app/src/core/network/constant/endpoints.dart';
 import 'package:news_app/src/core/network/dio_client.dart';
 
+import '../../../../core/params/fetch_news_headline_params.dart';
+
 abstract class NewsRemoteDataSource {
   Future<Map<String, dynamic>> fetchNewsHeadlineApiRequest(
-      Map<String, dynamic>? queryParameters);
+      FetchNewsHeadlineParams queryParameters);
 }
 
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
@@ -13,11 +15,11 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
 
   @override
   Future<Map<String, dynamic>> fetchNewsHeadlineApiRequest(
-      Map<String, dynamic>? queryParameters) async {
+      FetchNewsHeadlineParams queryParameters) async {
     try {
       final res = await dioClient.get(
         Endpoints.newsHeadline,
-        queryParameters: queryParameters,
+        queryParameters: queryParameters.toJson(),
       );
       return res.data;
     } catch (e) {

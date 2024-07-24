@@ -90,7 +90,9 @@ class NewsSourceListingPage extends ConsumerWidget {
                   ///--------------
                   var item = newArticles[index];
                   return NewsItemWidget(
-                      imageUrl: item.urlToImage ?? AppConstant.placeholderImage,
+                      imageUrl: item.urlToImage.isEmpty
+                          ? AppConstant.placeholderImage
+                          : item.urlToImage,
                       title: item.title,
                       description: item.description,
                       author: '${item.source?.name}',

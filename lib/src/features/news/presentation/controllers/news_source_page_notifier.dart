@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_config.dart';
 import '../../../../core/constants/app_constants.dart';
+import '../../../../core/params/fetch_news_headline_params.dart';
 import '../../domain/repositories/news_headline_repository.dart';
 import 'news_source_page_state.dart';
 
@@ -31,22 +32,18 @@ class NewsSourcePageNotifier extends StateNotifier<NewsSourcePageState> {
       paginationPage: state.paginationPage + 1,
     );
 
-    var queryParameters = <String, dynamic>{};
+    var queryParameters = FetchNewsHeadlineParams(
+      country: AppConstant.newsApiCountry,
+      page: state.paginationPage,
+      pageSize: AppConstant.pageSize,
+      apiKey: appConfig.newsApiKey,
+    );
 
     if (state.source.isNotEmpty) {
-      queryParameters = {
-        'sources': state.source.replaceAll(' ', '-'),
-        'page': state.paginationPage,
-        'pageSize': AppConstant.pageSize,
-        'apiKey': appConfig.newsApiKey,
-      };
-    } else {
-      queryParameters = {
-        'country': AppConstant.newsApiCountry,
-        'page': state.paginationPage,
-        'pageSize': AppConstant.pageSize,
-        'apiKey': appConfig.newsApiKey,
-      };
+      queryParameters = queryParameters.copyWith(
+        source: state.source.replaceAll(' ', '-'),
+        country: null,
+      );
     }
 
     var response = await newsHeadlineRepository

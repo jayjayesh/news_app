@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/params/fetch_news_headline_params.dart';
 import '../../../../core/constants/app_config.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../domain/repositories/news_headline_repository.dart';
@@ -76,24 +77,12 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       paginationPage: state.paginationPage + 1,
     );
 
-    var queryParameters = <String, dynamic>{};
-
-    // if (state.source.isNotEmpty) {
-    //   queryParameters = {
-    //     'sources': state.source.replaceAll(' ', '-'),
-    //     'page': state.paginationPage,
-    //     'pageSize': AppConstant.pageSize,
-    //     'apiKey': appConfig.newsApiKey,
-    //   };
-    // } else
-    {
-      queryParameters = {
-        'country': AppConstant.newsApiCountry,
-        'page': state.paginationPage,
-        'pageSize': AppConstant.pageSize,
-        'apiKey': appConfig.newsApiKey,
-      };
-    }
+    var queryParameters = FetchNewsHeadlineParams(
+      country: AppConstant.newsApiCountry,
+      page: state.paginationPage,
+      pageSize: AppConstant.pageSize,
+      apiKey: appConfig.newsApiKey,
+    );
 
     var response = await newsHeadlineRepository
         .fetchNewsHeadlineRepoRequest(queryParameters);

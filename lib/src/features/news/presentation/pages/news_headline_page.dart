@@ -111,8 +111,7 @@ class NewsListingPage extends ConsumerWidget {
                     ///--------------
                     var item = newArticles[index];
                     return NewsItemWidget(
-                        imageUrl: ((item.urlToImage == null) ||
-                                (item.urlToImage.isEmpty))
+                        imageUrl: item.urlToImage.isEmpty
                             ? AppConstant.placeholderImage
                             : item.urlToImage,
                         title: item.title,
