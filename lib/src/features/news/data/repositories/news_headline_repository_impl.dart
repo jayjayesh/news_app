@@ -10,6 +10,7 @@ import 'package:news_app/src/features/news/data/models/news_article_model.dart';
 import 'package:news_app/src/features/news/data/models/news_headline_response.dart';
 import 'package:news_app/src/features/news/domain/repositories/news_headline_repository.dart';
 
+import '../../../../core/params/fetch_news_headline_params.dart';
 import '../../domain/entities/news_article_entity.dart';
 
 class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
@@ -23,7 +24,7 @@ class NewsHeadlineRepositoryImpl implements NewsHeadlineRepository {
 
   @override
   Future<Either<Failure, List<NewsArticleEntity>>> fetchNewsHeadlineRepoRequest(
-      Map<String, dynamic> queryParameters) async {
+     FetchNewsHeadlineParams queryParameters) async {
     try {
       if (!await (connectionChecker.isConnected)) {
         return left(Failure(AppConstant.noConnectionErrorMessage));
