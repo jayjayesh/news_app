@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
@@ -10,6 +11,18 @@ void main() async {
   //
   WidgetsFlutterBinding.ensureInitialized();
   appConfig = await loadConfig();
+
+  /// print vs debugPrint : https://stackoverflow.com/a/66841392
+  if (kDebugMode) {
+    debugPrint = (String? message, {int? wrapWidth}) {
+      // alice.addLog(AliceLog(message: message ?? ''));
+      // NOTE: make sure : do not accidently debugPrint() in this code block
+      print('$message');
+    };
+  } else {
+    // hide logs in production
+    debugPrint = (String? message, {int? wrapWidth}) {};
+  }
 
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
