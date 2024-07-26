@@ -28,7 +28,7 @@ class NewsSourceListingPage extends ConsumerWidget {
                 scrollInfo.metrics.maxScrollExtent) {
               ref
                   .read(newsSourcePageNotifierProvider.notifier)
-                  .fetchNewsHeadline();
+                  .fetchSourceNewsHeadline();
             }
             return false;
           },
