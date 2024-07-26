@@ -28,7 +28,7 @@ void main() async {
       await ApiClientForUnitTest.get(url: url, params: requestParam)
           .then((response) async {
         // final responseData = await response.stream.bytesToString();
-        // print("Response Data ${json.decode(responseData)}");
+        // debugPrint("Response Data ${json.decode(responseData)}");
         expect(response.statusCode, 200);
       });
     });
@@ -46,7 +46,7 @@ void main() async {
       await ApiClientForUnitTest.get(url: url, params: requestParam)
           .then((response) async {
         // final responseData = await response.stream.bytesToString();
-        // print("Response Data ${json.decode(responseData)}");
+        // debugPrint("Response Data ${json.decode(responseData)}");
         expect(response.statusCode, 200);
       });
     });
