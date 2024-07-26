@@ -7,6 +7,7 @@ import '../../../../core/utility/app_scaffold_body.dart';
 import '../../../../core/providers/news_module_providers.dart';
 import '../../../../news_pigeon.g.dart';
 
+import '../../../settings/settings_view.dart';
 import '../widgets/news_item_widget.dart';
 
 class NewsListingPage extends ConsumerWidget {
@@ -42,12 +43,12 @@ class NewsListingPage extends ConsumerWidget {
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.south_rounded),
+              icon: const Icon(Icons.settings),
               onPressed: () {
                 // Navigate to the settings page. If the user leaves and returns
                 // to the app after it has been killed while running in the
                 // background, the navigation stack is restored.
-                // Navigator.restorablePushNamed(context, SettingsView.routeName);
+                Navigator.restorablePushNamed(context, SettingsView.routeName);
               },
             ),
           ],

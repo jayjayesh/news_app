@@ -46,29 +46,26 @@ class PostFooter extends StatelessWidget {
               if (author != null) ...[
                 TextSpan(
                   text: author,
-                  style: const TextStyle(
-                    color: Colors
-                        .blue, // Change the color to indicate it's clickable
-                    decoration:
-                        TextDecoration.underline, // Add underline for clarity
-                  ),
+                  style: textTheme.bodySmall?.copyWith(color: Colors.blue),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       // Define the action to be taken when the TextSpan is clicked.
                       // For example, you can navigate to another screen or open a URL.
-                      print('Author clicked: $author');
+                      debugPrint('Author clicked: $author');
                       onTapAuthor?.call();
                     },
                 ),
                 const WidgetSpan(child: SizedBox(width: AppSpacing.sm)),
-                const TextSpan(
+                TextSpan(
                   text: '•',
+                  style: textTheme.bodySmall,
                 ),
                 const WidgetSpan(child: SizedBox(width: AppSpacing.sm)),
               ],
               if (publishedAt != null)
                 TextSpan(
                   text: publishedAt!.mDY,
+                  style: textTheme.bodySmall,
                 ),
             ],
           ),

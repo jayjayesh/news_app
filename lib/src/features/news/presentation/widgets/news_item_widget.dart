@@ -54,8 +54,7 @@ class NewsItemWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: textTheme.titleLarge
-                        ?.copyWith(color: AppColors.highEmphasisSurface),
+                    style: textTheme.titleLarge,
                     maxLines: 6,
                   ),
                 ),
@@ -67,8 +66,7 @@ class NewsItemWidget extends StatelessWidget {
             ),
             Text(
               description ?? '',
-              style: textTheme.bodyMedium
-                  ?.copyWith(color: AppColors.mediumEmphasisSurface),
+              style: textTheme.bodyMedium,
             ),
             const SizedBox(height: AppSpacing.sm),
             PostFooter(

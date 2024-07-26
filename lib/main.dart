@@ -16,7 +16,7 @@ void main() async {
   if (kDebugMode) {
     debugPrint = (String? message, {int? wrapWidth}) {
       // alice.addLog(AliceLog(message: message ?? ''));
-      // NOTE: make sure : do not accidently debugPrint() in this code block
+      // NOTE: please do not accidently put debugPrint() in this code block
       print('$message');
     };
   } else {
