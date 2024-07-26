@@ -16,7 +16,7 @@ class FetchNewsHeadlineParams {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{
       'country': country,
-      'source': source,
+      'sources': source,
       'page': page,
       'pageSize': pageSize,
       'apiKey': apiKey,
@@ -36,8 +36,8 @@ class FetchNewsHeadlineParams {
     String? apiKey,
   }) {
     return FetchNewsHeadlineParams(
-      country: country ?? this.country,
-      source: source ?? this.source,
+      country: country,
+      source: source,
       page: page ?? this.page,
       pageSize: pageSize ?? this.pageSize,
       apiKey: apiKey ?? this.apiKey,
