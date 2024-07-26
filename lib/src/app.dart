@@ -64,8 +64,7 @@ class MyApp extends ConsumerWidget {
           // darkTheme: ThemeData.dark(),
           theme: const AppTheme().themeData,
           darkTheme: const AppDarkTheme().themeData,
-          themeMode:
-              ref.watch(themeModeProvider), //settingsController.themeMode,
+          themeMode: ref.watch(themeModeProvider2),
           builder: EasyLoading.init(),
           // routes: AppRoutes.routes,
 
