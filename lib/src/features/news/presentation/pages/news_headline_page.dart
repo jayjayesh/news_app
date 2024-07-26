@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/providers/app_providers.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/utility/app_exit_will_pop_scope_widget.dart';
 import '../../../../core/utility/app_scaffold_body.dart';
@@ -48,7 +49,15 @@ class NewsListingPage extends ConsumerWidget {
                 // Navigate to the settings page. If the user leaves and returns
                 // to the app after it has been killed while running in the
                 // background, the navigation stack is restored.
-                Navigator.restorablePushNamed(context, SettingsView.routeName);
+                // Navigator.restorablePushNamed(context, SettingsView.routeName);
+                ///
+                ///
+                ref.read(themeModeProvider.notifier).update((previousStatus) {
+                  if (previousStatus == ThemeMode.light) {
+                    return ThemeMode.dark;
+                  }
+                  return ThemeMode.light;
+                });
               },
             ),
           ],

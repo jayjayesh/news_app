@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/providers/app_providers.dart';
 import 'package:news_app/src/features/news/presentation/pages/news_headline_page.dart';
 import 'package:news_app/src/features/news/presentation/pages/news_source_page.dart';
 import 'features/settings/settings_controller.dart';
 import 'features/settings/settings_view.dart';
 
 /// The Widget that configures your application.
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({
     super.key,
     required this.settingsController,
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   final SettingsController settingsController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // Glue the SettingsController to the MaterialApp.
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
@@ -62,7 +64,8 @@ class MyApp extends StatelessWidget {
           // darkTheme: ThemeData.dark(),
           theme: const AppTheme().themeData,
           darkTheme: const AppDarkTheme().themeData,
-          themeMode: settingsController.themeMode,
+          themeMode:
+              ref.watch(themeModeProvider), //settingsController.themeMode,
           builder: EasyLoading.init(),
           // routes: AppRoutes.routes,
 
