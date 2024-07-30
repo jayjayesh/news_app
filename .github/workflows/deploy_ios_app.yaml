@@ -14,6 +14,7 @@ jobs:
     #   ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
     #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
     #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    #   MATCH_GIT_BASIC_AUTHORIZATION:  ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
 
     concurrency:
       group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
