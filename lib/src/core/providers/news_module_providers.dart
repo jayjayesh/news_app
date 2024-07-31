@@ -9,22 +9,30 @@ import 'package:news_app/src/features/news/presentation/controllers/news_headlin
 import 'package:news_app/src/features/news/presentation/controllers/news_source_page_notifier.dart';
 import 'package:news_app/src/features/news/presentation/controllers/news_source_page_state.dart';
 
-final newsApiProvider = Provider<NewsRemoteDataSource>((ref) {
+import '../../features/news/domain/usecases/fetch_news_uc.dart';
+
+final newsRemoteDataProvider = Provider<NewsRemoteDataSource>((ref) {
   return NewsRemoteDataSourceImpl(ref.read(dioClientProvider));
 });
 
 final newsHeadlineRepositoryProvider = Provider<NewsHeadlineRepository>(
   (ref) {
     return NewsHeadlineRepositoryImpl(
-      ref.read(newsApiProvider),
+      ref.read(newsRemoteDataProvider),
       ref.read(connectionCheckerProvider),
     );
   },
 );
 
+
+final fetchNewsUc = Provider<FetchNewsUc>((ref) {
+  return FetchNewsUc(ref.read(newsHeadlineRepositoryProvider));
+});
+
+
 final newsHeadlinePageNotifierProvider = StateNotifierProvider.autoDispose<
     NewsHeadlinePageNotifier, NewsHeadlinePageState>((ref) {
-  return NewsHeadlinePageNotifier(ref.read(newsHeadlineRepositoryProvider));
+  return NewsHeadlinePageNotifier(ref.read(fetchNewsUc));
 });
 
 final newsSourcePageNotifierProvider = StateNotifierProvider.autoDispose<
