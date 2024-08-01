@@ -4,16 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/params/fetch_news_headline_params.dart';
 import '../../../../core/constants/app_config.dart';
 import '../../../../core/constants/app_constants.dart';
-import '../../domain/repositories/news_headline_repository.dart';
+import '../../domain/usecases/fetch_news_uc.dart';
 import 'news_headline_page_state.dart';
 import '../pages/news_source_page.dart';
 
 class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
-  final NewsHeadlineRepository newsHeadlineRepository;
+  final FetchNewsUc fetchNewsUc;
 
   // constructor : initMethod()
-  NewsHeadlinePageNotifier(this.newsHeadlineRepository)
-      : super(NewsHeadlinePageState()) {
+  NewsHeadlinePageNotifier(this.fetchNewsUc) : super(NewsHeadlinePageState()) {
     fetchNewsHeadline();
     // startTimer();
   }
@@ -84,8 +83,7 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       apiKey: appConfig.newsApiKey,
     );
 
-    var response = await newsHeadlineRepository
-        .fetchNewsHeadlineRepoRequest(queryParameters);
+    var response = await fetchNewsUc.call(queryParameters);
 
     response.fold(
       (l) {
