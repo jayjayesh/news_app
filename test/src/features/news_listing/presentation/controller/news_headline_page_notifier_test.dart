@@ -8,6 +8,10 @@ import 'package:news_app/src/features/news/domain/entities/news_article_entity.d
 import 'package:news_app/src/features/news/domain/usecases/fetch_news_uc.dart';
 import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_notifier.dart';
 
+///
+/// Ref Tutorial : Reso Coder : https://youtu.be/hUAUAkIZmX0?si=HbMhVHMbJHRWHNIg
+///
+
 class MockFetchNewsUc extends Mock implements FetchNewsUc {}
 // class MockAppConfig extends Mock implements AppConfig {}
 
