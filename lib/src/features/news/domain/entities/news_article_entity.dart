@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:news_app/src/news_pigeon.g.dart';
 
 import 'news_article_source_entity.dart';
 
-class NewsArticleEntity {
+class NewsArticleEntity extends Equatable {
   final String author;
   final String title;
   final String description;
@@ -39,4 +40,16 @@ class NewsArticleEntity {
       ),
     );
   }
+
+  @override
+  List<Object?> get props => [
+        author,
+        title,
+        description,
+        url,
+        urlToImage,
+        publishedAt,
+        content,
+        source,
+      ];
 }

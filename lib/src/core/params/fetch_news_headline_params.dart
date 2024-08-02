@@ -1,4 +1,6 @@
-class FetchNewsHeadlineParams {
+import 'package:equatable/equatable.dart';
+
+class FetchNewsHeadlineParams extends Equatable {
   final String country;
   final int page;
   final int pageSize;
@@ -38,4 +40,7 @@ class FetchNewsHeadlineParams {
       apiKey: apiKey ?? this.apiKey,
     );
   }
+
+  @override
+  List<Object?> get props => [country, page, pageSize, apiKey];
 }
