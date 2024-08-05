@@ -38,5 +38,5 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    # - name: Run Tests
-    #   run: flutter test
+    - name: Run Tests
+      run: flutter test
