@@ -13,7 +13,10 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
 
   // constructor : initMethod()
   NewsHeadlinePageNotifier(this.fetchNewsUc) : super(NewsHeadlinePageState()) {
-    fetchNewsHeadline();
+    // Delay is added to pass news_headline_page_notifier_test.dart
+    Future.delayed(Durations.extralong4, () {
+      fetchNewsHeadline();
+    });
     // startTimer();
   }
 

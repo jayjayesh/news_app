@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
+import 'package:news_app/src/core/params/fetch_news_headline_params.dart';
 import 'package:news_app/src/features/news/domain/entities/news_article_entity.dart';
 import 'package:news_app/src/features/news/domain/usecases/fetch_news_uc.dart';
 import 'package:news_app/src/features/news/presentation/controllers/news_headline_page_notifier.dart';
@@ -23,6 +24,13 @@ void main() async {
   NewsHeadlinePageNotifier newsHeadlinePageNotifier =
       NewsHeadlinePageNotifier(fetchNewsUc);
 
+  var queryParameters = FetchNewsHeadlineParams(
+    country: AppConstant.newsApiCountry,
+    page: 1,
+    pageSize: AppConstant.pageSize,
+    apiKey: appConfig.newsApiKey,
+  );
+
   var newsArticleEntityObjc = NewsArticleEntity(
     title: 'Title 1',
     description: 'Description 1',
@@ -37,7 +45,7 @@ void main() async {
     test('fetchNewsHeadlines() should load news headlines from the repository',
         () async {
       // Arrange
-      when(() => fetchNewsUc.call(any()))
+      when(() => fetchNewsUc.call(queryParameters))
           .thenAnswer((_) async => Future.value(right([
                 newsArticleEntityObjc,
                 newsArticleEntityObjc,
