@@ -77,12 +77,12 @@ jobs:
           asset_content_type: application/zip
   
       - name: Create Release
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
-      with:
-        files: frontend/build/app/outputs/flutter-apk/app-release.apk
-      # env:
-      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: frontend/build/app/outputs/flutter-apk/app-release.apk
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
     # - name: Upload APK to Firebase App Distribution
