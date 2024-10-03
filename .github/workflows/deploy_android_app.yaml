@@ -39,6 +39,9 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
+    - name: Run build_runner (command)
+      run: flutter pub run build_runner build --delete-conflicting-outputs
+
     - name: Build APK
       run: flutter build apk --release
 
@@ -48,14 +51,14 @@ jobs:
         name: app-release-apk
         path: build/app/outputs/flutter-apk/app-release.apk
   
-    - name: Create Release
+    - name: Create Release Save Build at Github
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
       with:
         files: build/app/outputs/flutter-apk/app-release.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+
 
   # release:
   #   name: Release APK

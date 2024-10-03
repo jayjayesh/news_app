@@ -1,74 +1,85 @@
-# name: Build and Deploy iOS App
+name: Build and Deploy iOS App
 
-# on:
-#   push:
-#     tags:
-#       - 'v*'
-#   workflow_dispatch:
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
-# permissions:
-#   contents: write
-#   pages: write
-#   id-token: write
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
-# jobs:
-#   iOS:
-#     name: Build CI (iOS)
-#     runs-on: macos-latest
+jobs:
+  iOS:
+    name: Build CI (iOS)
+    runs-on: macos-latest
 
-#     # env:
-#     #   ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
-#     #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
-#     #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-#     #   MATCH_GIT_BASIC_AUTHORIZATION:  ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+    # env:
+    #   ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
+    #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
+    #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    #   MATCH_GIT_BASIC_AUTHORIZATION:  ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
 
-#     concurrency:
-#       group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-#       cancel-in-progress: true
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
 
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v4
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-#     - name: Install Flutter
-#       uses: subosito/flutter-action@v2
-#       with:
-#         flutter-version: '3.22.0'  # Use the latest stable version or specify the version you need
-#         channel: 'stable'
-#         cache: true
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.22.0'  # Use the latest stable version or specify the version you need
+        channel: 'stable'
+        cache: true
 
-#     - name: Install dependencies
-#       run: flutter pub get
+    - name: Install dependencies
+      run: flutter pub get
 
-#     - name: Install pod
-#       run: cd ios && pod install
+    - name: Install pod
+      run: cd ios && pod install
 
-#     - name: Build IPA
-#       run: flutter build ios --release --no-codesign
+    - name: Run build_runner (command)
+      run: flutter pub run build_runner build --delete-conflicting-outputs
 
-#     # New step to list directory contents for troubleshooting
-#     - name: List build directory
-#       run: ls -R build/ios/
+    - name: Build IPA
+      run: flutter build ios --release --no-codesign
 
-#     # runner.app to IPA == https://stackoverflow.com/a/56666092
-#     - name: Upload IPA artifact
-#       uses: actions/upload-artifact@v4
-#       with:
-#         name: app-release-ipa
-#         path: build/ios/iphoneos/Runner.app 
+    # New step to list directory contents for troubleshooting
+    - name: List build directory
+      run: ls -R build/ios/
+
+    # runner.app to IPA == https://stackoverflow.com/a/56666092
+    - name: Upload IPA artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release-ipa
+        path: build/ios/iphoneos/Runner.app 
+
+    - name: Create Release Save Build at Github
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/ios/iphoneos/Runner.app
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-#     # - name: Upload APK to Firebase App Distribution
-#     #   run: |
-#     #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
-#     #     unzip firebase-appdistribution-cli-linux.zip
-#     #     ./firebase-appdistribution --app $ANDROID_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN app/build/outputs/flutter-apk/app-release.apk
+    # - name: Upload APK to Firebase App Distribution
+    #   run: |
+    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
+    #     unzip firebase-appdistribution-cli-linux.zip
+    #     ./firebase-appdistribution --app $ANDROID_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN app/build/outputs/flutter-apk/app-release.apk
 
-#     # - name: Upload IPA to Firebase App Distribution
-#     #   run: |
-#     #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
-#     #     unzip firebase-appdistribution-cli-linux.zip
-#     #     ./firebase-appdistribution --app $IOS_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN build/ios/iphoneos/Runner.app
+    # - name: Upload IPA to Firebase App Distribution
+    #   run: |
+    #     wget https://dl.google.com/firebase/appdistribution/appdistribution-cli/latest/linux/firebase-appdistribution-cli-linux.zip
+    #     unzip firebase-appdistribution-cli-linux.zip
+    #     ./firebase-appdistribution --app $IOS_FIREBASE_APP_ID --release-notes "New release from GitHub Actions" --token $FIREBASE_TOKEN build/ios/iphoneos/Runner.app
 
 
 
