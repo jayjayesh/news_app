@@ -36,6 +36,12 @@ jobs:
         channel: 'stable'
         cache: true
 
+    - name: 'Create env file'
+      run: |
+        touch /assets/app_config/app_config.json
+        echo ${{ secrets.ENV_VARIABLES }} >> /assets/app_config/app_config.json
+        cat /assets/app_config/app_config.json
+
     - name: Install dependencies
       run: flutter pub get
 
