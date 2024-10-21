@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
+import 'package:news_app/src/core/constants/app_config_envirenments.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
 import 'package:news_app/src/core/params/fetch_news_headline_params.dart';
 import 'package:news_app/src/features/news/domain/entities/news_article_entity.dart';
@@ -28,7 +29,7 @@ void main() async {
     country: AppConstant.newsApiCountry,
     page: 1,
     pageSize: AppConstant.pageSize,
-    apiKey: appConfig.newsApiKey,
+    apiKey: Environment.newsApiKey,
   );
 
   var newsArticleEntityObjc = NewsArticleEntity(

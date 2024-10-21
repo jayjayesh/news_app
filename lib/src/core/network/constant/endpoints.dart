@@ -1,8 +1,9 @@
 import 'package:news_app/src/core/constants/app_config.dart';
+import 'package:news_app/src/core/constants/app_config_envirenments.dart';
 
 class Endpoints {
   // base url
-  static String newsHeadline = "${appConfig.baseUrl}/v2/top-headlines";
+  static String newsHeadline = "${Environment.apiEndPoint}/v2/top-headlines";
 
   // receiveTimeout
   static const int receiveTimeout = 15000;

@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
+import 'package:news_app/src/core/constants/app_config_envirenments.dart';
 
 import 'src/app.dart';
 import 'src/features/settings/settings_controller.dart';
@@ -11,6 +13,7 @@ void main() async {
   //
   WidgetsFlutterBinding.ensureInitialized();
   appConfig = await loadConfig();
+  await dotenv.load(fileName: Environment.filename);
 
   /// print vs debugPrint : https://stackoverflow.com/a/66841392
   if (kDebugMode) {

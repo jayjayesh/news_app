@@ -30,6 +30,7 @@ dependencies:
   fpdart: ^1.1.0
   internet_connection_checker_plus: ^2.2.0
   equatable: ^2.0.5
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -83,3 +84,5 @@ flutter:
     # Add assets from the images directory to the application.
     - assets/images/
     - assets/app_config/
+    - env.development
+    - env.production

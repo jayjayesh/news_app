@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/constants/app_config_envirenments.dart';
 import 'package:news_app/src/core/params/fetch_news_headline_params.dart';
 import '../../../../core/constants/app_config.dart';
 import '../../../../core/constants/app_constants.dart';
@@ -83,7 +84,7 @@ class NewsHeadlinePageNotifier extends StateNotifier<NewsHeadlinePageState> {
       country: AppConstant.newsApiCountry,
       page: state.paginationPage,
       pageSize: AppConstant.pageSize,
-      apiKey: appConfig.newsApiKey,
+      apiKey: Environment.newsApiKey,
     );
 
     var response = await fetchNewsUc.call(queryParameters);

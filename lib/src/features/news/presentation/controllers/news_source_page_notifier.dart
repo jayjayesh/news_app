@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/src/core/constants/app_config_envirenments.dart';
 import 'package:news_app/src/core/params/fetch_news_source_headline_params.dart';
 import '../../../../core/constants/app_config.dart';
 import '../../../../core/constants/app_constants.dart';
@@ -42,7 +43,7 @@ class NewsSourcePageNotifier extends StateNotifier<NewsSourcePageState> {
       country: '', // country must be empty or null
       page: state.paginationPage,
       pageSize: AppConstant.pageSize,
-      apiKey: appConfig.newsApiKey,
+      apiKey: Environment.newsApiKey,
     );
 
     var response = await newsHeadlineRepository

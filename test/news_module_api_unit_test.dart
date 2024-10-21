@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:news_app/src/core/constants/app_config.dart';
+import 'package:news_app/src/core/constants/app_config_envirenments.dart';
 import 'package:news_app/src/core/constants/app_constants.dart';
 import 'package:news_app/src/core/network/constant/endpoints.dart';
 
@@ -20,7 +21,7 @@ void main() async {
         'country': AppConstant.newsApiCountry,
         'page': page,
         'pageSize': pageSize,
-        'apiKey': appConfig.newsApiKey,
+        'apiKey': Environment.newsApiKey,
       };
       String url = Endpoints.newsHeadline;
 
@@ -38,7 +39,7 @@ void main() async {
         'sources': 'techcrunch',
         'page': page,
         'pageSize': pageSize,
-        'apiKey': appConfig.newsApiKey,
+        'apiKey': Environment.newsApiKey,
       };
       String url = Endpoints.newsHeadline;
 

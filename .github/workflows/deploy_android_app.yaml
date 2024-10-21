@@ -16,6 +16,7 @@ jobs:
     name: Build CI (Android)
     runs-on: ubuntu-latest
 
+    # envirenment: production
     # env:
     #   ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
     #   IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
@@ -26,6 +27,20 @@ jobs:
       cancel-in-progress: true
 
     steps:
+    - name: 'Create env.development file'
+      run: |
+        touch env.development
+        echo API_ENDPOINT=${{ secrets.API_ENDPOINT }} >> env.development
+        echo NEWS_API_KEY=${{ secrets.NEWS_API_KEY }} >> env.development
+        cat env.development
+
+    - name: 'Create env.production file'
+      run: |
+        touch env.production
+        echo API_ENDPOINT=${{ secrets.API_ENDPOINT }} >> env.production
+        echo NEWS_API_KEY=${{ secrets.NEWS_API_KEY }} >> env.production
+        cat env.production
+
     - name: Checkout code
       uses: actions/checkout@v4
 
@@ -35,12 +50,6 @@ jobs:
         flutter-version: '3.22.0'  # Use the latest stable version or specify the version you need
         channel: 'stable'
         cache: true
-
-    - name: 'Create env file'
-      run: |
-        touch assets/app_config/app_config.json
-        echo {"baseUrl":${{ secrets.API_ENDPOINT }}, "newsApiKey":${{ secrets.NEWS_API_KEY }}} >> assets/app_config/app_config.json
-        cat assets/app_config/app_config.json
 
     - name: Install dependencies
       run: flutter pub get
