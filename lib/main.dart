@@ -12,7 +12,7 @@ import 'src/features/settings/settings_service.dart';
 void main() async {
   //
   WidgetsFlutterBinding.ensureInitialized();
-  appConfig = await loadConfig();
+  // appConfig = await loadConfig();
   await dotenv.load(fileName: Environment.filename);
 
   /// print vs debugPrint : https://stackoverflow.com/a/66841392
